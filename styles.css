@@ -1,0 +1,28 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+   
+    background-color: #f4f4f4;
+    color: #333;
+    font-family: 'Times New Roman', Times, serif;
+  }
+  
+
+  .heading {
+    background-color: #388E3C; /* Green Header */
+    color: white;
+    padding: 15px 30px;
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
