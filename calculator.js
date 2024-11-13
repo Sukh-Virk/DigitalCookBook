@@ -43,21 +43,35 @@ async function calculateNutrition() {
     resultsSection.innerHTML = '<p>Calculating...</p>';
 
     try {
-        const ingredientsList = ingredients.join('\n');
+        // Format ingredients properly for the API
+        const formattedIngredients = ingredients.map(ingredient => {
+            // Remove any special characters and extra spaces
+            return ingredient.trim().replace(/[^\w\s]/gi, '');
+        });
+
         const response = await fetch(`https://api.edamam.com/api/nutrition-details?app_id=${APP_ID}&app_key=${APP_KEY}`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
             },
             body: JSON.stringify({
-                ingr: ingredients
+                title: "Meal Analysis",
+                ingr: formattedIngredients
             })
         });
+
+        if (!response.ok) {
+            throw new Error('API request failed');
+        }
 
         const data = await response.json();
         displayResults(data);
     } catch (error) {
-        resultsSection.innerHTML = '<p>Error calculating nutrition. Please try again.</p>';
+        resultsSection.innerHTML = `
+            <p>Error calculating nutrition. Please make sure your ingredients are formatted correctly.</p>
+            <p>Example format: "1 cup rice" or "100g chicken breast"</p>
+        `;
     }
 }
 
