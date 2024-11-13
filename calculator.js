@@ -1,5 +1,5 @@
-// const APP_ID = ;
-// const APP_KEY = ;
+const APP_ID = "cc0e42a4";
+const APP_KEY = "a50ea574ee94d0760cf2dad3eb93b9ab";
 
 let ingredients = [];
 
