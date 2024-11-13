@@ -1,18 +1,18 @@
+/* Reset and Global Styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-  }
-  
-  body {
-   
+}
+
+body {
     background-color: #f4f4f4;
     color: #333;
     font-family: 'Times New Roman', Times, serif;
-  }
-  
+}
 
-  .heading {
+/* Header Styling */
+.heading {
     background-color: #388E3C; /* Green Header */
     color: white;
     padding: 15px 30px;
@@ -24,37 +24,80 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
+}
 
-  
-.header .logo h1 {
+.heading .name h1 {
     font-size: 1.8rem;
     font-weight: bold;
-  }
-  
-  .navigation ul {
+}
+
+.navigation ul {
     list-style: none;
     display: flex;
     gap: 20px;
-  }
-  
-  .navigation ul li a {
+}
 
+.navigation ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.navigation ul li a:hover {
+    border-bottom: 2px solid white;
+}
+
+/* Image Section Styling */
+.image {
+    background-image: url('./images/salad-2756467_1280.jpg'); /* Replace with your image path */
+    background-position: center;
+    background-size: cover;
+    padding: 100px 20px;
+    color: white;
+    position: relative;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+}
+
+.image .image1content {
+    background-color: rgba(0, 0, 0, 0.6); 
+    padding: 50px 20px;
+    display: inline-block;
+    border-radius: 10px;
+}
+
+.image h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+}
+
+.image p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+
+.Exbutton {
+    background-color: #4CAF50; 
     color: white;
 
+    padding: 20px 40px;
+   
     text-decoration: none;
 
-    font-size: 1.1rem;
+    border-radius: 7px;
 
     font-weight: bold;
 
-    color: white;
+    transition: background 0.3s ease;
+}
 
+.Exbutton:hover {
+    background-color: #388E3C;
 
-  }
-  
-  .navigation ul li a:hover {
-    border-bottom: 2px solid white;
-  }
-  
-  
+    color:white
+}
