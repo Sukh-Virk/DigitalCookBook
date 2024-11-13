@@ -70,7 +70,7 @@ async function calculateNutrition() {
     } catch (error) {
         resultsSection.innerHTML = `
             <p>Error calculating nutrition. Please make sure your ingredients are formatted correctly.</p>
-            <p>Example format: "1 cup rice" or "100g chicken breast"</p>
+            <p>Example format: "1 cup rice" or "100g chicken breast", always include the amount of the ingredient and don't use decimals.</p>
         `;
     }
 }
