@@ -48,19 +48,14 @@ body {
     border-bottom: 2px solid white;
 }
 
-/* Image Section Styling */
 .image {
     background-image: url('./images/salad-2756467_1280.jpg'); /* Replace with your image path */
-    background-position: center;
     background-size: cover;
+    background-position: center;
     padding: 100px 20px;
+    text-align: center;
     color: white;
     position: relative;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 400px;
 }
 
 .image .image1content {
@@ -101,3 +96,47 @@ body {
 
     color:white
 }
+
+.login {
+    padding: 40px 20px;
+    text-align: center;
+    background-color: #fff;
+  }
+  
+  .login h2 {
+    font-size: 2.5rem;
+    color: #388E3C;
+    margin-bottom: 20px;
+  }
+  
+  .loginform {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .loginform input {
+    padding: 10px;
+    font-size: 1rem;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+  }
+  
+  .loginform button {
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    color: white;
+    background-color: #4CAF50;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .loginform button:hover {
+    background-color: #388E3C;
+  }
+  
