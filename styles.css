@@ -72,23 +72,26 @@ body {
 
 .image p {
     font-size: 1.2rem;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 }
 
 
 .Exbutton {
     background-color: #4CAF50; 
-    color: white;
 
-    padding: 20px 40px;
-   
-    text-decoration: none;
+  color: white;
 
-    border-radius: 7px;
+  padding: 15px 30px;
 
-    font-weight: bold;
+  text-transform: uppercase;
 
-    transition: background 0.3s ease;
+  text-decoration: none;
+
+  border-radius: 5px;
+
+  font-weight: bold;
+
+  transition: background 0.3s ease;
 }
 
 .Exbutton:hover {
@@ -139,4 +142,148 @@ body {
   .loginform button:hover {
     background-color: #388E3C;
   }
+ 
+  .features {
+    padding: 50px 20px;
+    background-color: #f9f9f9;
+    text-align: center;
+  }
   
+  .features h2 {
+    font-size: 2.5rem;
+    color: #388E3C;
+    margin-bottom: 30px;
+  }
+  
+  .feature-section {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap; 
+  }
+  
+  .feature-column {
+    flex: 1;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .feature-column:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card {
+    background-color: #fff;
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+  
+  .feature-card p {
+    font-size: 1rem;
+    color: #555;
+    margin-top: 10px;
+  }
+  
+  /* Footer Section */
+  footer {
+    background-color: #388E3C;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 50px;
+  }
+  
+  
+  
+  footer p {
+    font-size: 1rem;
+  }
+  
+  .feature-section {
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr); 
+
+    grid-gap: 5px; 
+
+    justify-items: center; 
+
+    align-items: center; 
+
+    padding: 20px; 
+
+    background-color: #f9f9f9; 
+
+    border-radius: 10px; 
+   
+  }
+  
+  .card {
+    width: 300px;
+
+    height: 350px;
+
+    padding: 10px;
+
+    background-color: #ffffff;
+
+    border-radius: 8px;
+
+    text-align: center;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+  }
+  
+  .card img {
+    width: 200px; 
+
+    height: 200px; 
+
+    margin-bottom: 15px; 
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+    
+  }
+  
+  
+  .cardwrite {
+
+    font-weight: bold;
+    color: #388E3C !important; 
+    text-decoration: none !important; 
+  }
+  
+ 
+ 
+  
+
