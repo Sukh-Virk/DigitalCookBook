@@ -25,4 +25,36 @@
     justify-content: space-between;
     align-items: center;
   }
+
+  
+.header .logo h1 {
+    font-size: 1.8rem;
+    font-weight: bold;
+  }
+  
+  .navigation ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+  }
+  
+  .navigation ul li a {
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 1.1rem;
+
+    font-weight: bold;
+
+    color: white;
+
+
+  }
+  
+  .navigation ul li a:hover {
+    border-bottom: 2px solid white;
+  }
+  
   
