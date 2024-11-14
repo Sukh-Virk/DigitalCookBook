@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Difficulty Estimator - Digital Cookbook</title>
     <link rel="stylesheet" href="styles3.css">
 </head>
+
 <body>
 
- 
+
     <header class="header">
         <div class="logo">Digital Cookbook</div>
         <nav>
@@ -18,46 +20,45 @@
         </nav>
     </header>
 
-   
-    <main class="estimator-container">
+
+    <main id="theMainTag" class="estimator-container">
         <h1>Difficulty Estimator</h1>
+        <h1></h1>
         <p>Estimate the difficulty level of a recipe based on cooking time and complexity.</p>
 
         <form id="difficulty-form">
-            <label for="cook-time">Cooking Time (minutes):</label>
-            <input type="number" id="cook-time" name="cook-time" min="1" required>
-            
-            <label for="complexity">Recipe Complexity:</label>
-            <select id="complexity" name="complexity" required>
-                <option value="">Select</option>
-                <option value="easy">Easy</option>
-                <option value="medium">Medium</option>
-                <option value="hard">Hard</option>
-            </select>
-            
-            <button type="submit" class="estimate-btn">Estimate Difficulty</button>
+            <label for="cookTime">Cooking Time (minutes):</label>
+            <input type="number" id="cookTime" name="cook-time" min="1" value="3">
+
+            <label for="ingredientsNum">Number of ingredients:</label>
+            <input type="number" id="ingredientsNum" name="ingredients-num" min="1" value="3">
+
+            <label for="recipeText">Type the recipe:</label>
+            <textarea id="recipeText" name="recipeText" class="recipeInput1"> </textarea>
+
+            <button type="button" id="myButton" class="estimate-btn">Estimate Difficulty</button>
         </form>
 
-        
+
         <div id="difficulty-result" class="result hidden">
             <h3>Estimated Difficulty Level:</h3>
             <p id="difficulty-level"></p>
         </div>
     </main>
 
-    
+
     <section class="examples-section">
         <h2>Examples of Difficulty Levels</h2>
         <div class="examples-container">
-            <div class="example-card">
+            <div id="diffEasy" class="example-card">
                 <h3>Easy</h3>
                 <p>Examples: Simple salad, boiled eggs, sandwiches.</p>
             </div>
-            <div class="example-card">
+            <div id="diffMedium" class="example-card">
                 <h3>Medium</h3>
                 <p>Examples: Grilled chicken, pasta, stir-fry dishes.</p>
             </div>
-            <div class="example-card">
+            <div id="diffHard" class="example-card">
                 <h3>Hard</h3>
                 <p>Examples: Beef Wellington, souffle, homemade pasta from scratch.</p>
             </div>
@@ -71,4 +72,5 @@
 
     <script src="difficulty-estimator.js"></script>
 </body>
+
 </html>
