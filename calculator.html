@@ -1,10 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nutrition Calculator - Digital Cookbook</title>
-    <link rel="stylesheet" href="calculator.css">
+    <link rel="stylesheet" href="calculator.css"> 
 </head>
 <body>
 
@@ -25,7 +26,7 @@
         <h1>Nutrition Calculator</h1>
         
         <div class="search-section">
-            <input type="text" id="ingredientInput" placeholder="Enter an ingredient with the amount and no decimals. e.g., '1 cup rice' or '100g bacon'">
+            <input type="text" id="ingredientInput" placeholder="Enter an ingredient with the amount, e.g., '1 cup rice' or '100g bacon'">
             <button onclick="addIngredient()">Add Ingredient</button>
         </div>
 
@@ -36,11 +37,38 @@
         </div>
 
         <div class="results-section" id="nutritionResults">
-            <!-- Results will be displayed here -->
+            
         </div>
     </main>
 
+  
+    <section class="common-items-section">
+        <h2>Commonly Searched Items</h2>
+        <div class="common-items-container">
+           
+            <div class="item-card">
+                <img src="./images/rice-3506194_1280.jpg" alt="1 cup of rice">
+                <h3>1 Cup of Rice</h3>
+                <p>Calories: 200 kcal</p>
+                <button onclick="addItemToSearch('1 cup rice')">Add to Calculator</button>
+            </div>
+            <div class="item-card">
+                <img src="./images/sizzling-2650322_1280.jpg" alt="100g of bacon">
+                <h3>100g of Bacon</h3>
+                <p>Calories: 541 kcal</p>
+                <button onclick="addItemToSearch('100g bacon')">Add to Calculator</button>
+            </div>
+            <div class="item-card">
+                <img src="./images/bananas-3700718_1280.jpg" alt="1 banana">
+                <h3>1 Banana</h3>
+                <p>Calories: 89 kcal</p>
+                <button onclick="addItemToSearch('1 banana')">Add to Calculator</button>
+            </div>
+            
+        </div>
+    </section>
 
+ 
     <footer class="footer">
         <p>&copy; 2024 Digital Cookbook. All Rights Reserved.</p>
     </footer>
