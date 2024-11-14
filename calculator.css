@@ -1,10 +1,61 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #4CAF50;
+    padding: 15px 20px;
+    color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.navigation {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+.navigation li {
+    margin: 0;
+}
+
+.navigation a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.navigation a:hover {
+    color: #cce7cc; /* Lighter shade on hover */
+}
+
+
 .calculator-container {
     max-width: 800px;
     margin: 40px auto;
     padding: 20px;
     background-color: white;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .search-section {
@@ -76,4 +127,13 @@ button:hover {
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     text-align: center;
+}
+
+
+.footer {
+    background-color: #4CAF50;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: 40px;
 }
