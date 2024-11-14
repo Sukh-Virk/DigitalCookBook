@@ -1,14 +1,133 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Cookbook</title>
+  <link rel="stylesheet" href="styles2.css">  Link to your external CSS file 
+</head>
+<body>
+
+  Header with Navigation Links
+  <header class="main-header">
+    <div class="logo">Digital Cookbook</div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="#features">Features</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  Search Section
+  <section id="search" class="section">
+    <h2>Search</h2>
+    <p>Use the search feature to find recipes by ingredients, cooking time, and difficulty level.</p>
+    <form id="search-form">
+      <label for="ingredients">Ingredients:</label>
+      <input type="text" id="ingredients" name="ingredients" placeholder="e.g., chicken, broccoli">
+      
+      <label for="cooking-time">Max Cooking Time (minutes):</label>
+      <input type="number" id="cooking-time" name="cooking-time" min="1" placeholder="e.g., 30">
+      
+      <label for="difficulty">Difficulty:</label>
+      <select id="difficulty" name="difficulty">
+        <option value="any">Any</option>
+        <option value="easy">Easy</option>
+        <option value="medium">Medium</option>
+        <option value="hard">Hard</option>
+      </select>
+      
+      <button type="submit">Search Recipes</button>
+    </form>
+  </section>
+
+  Recommendations Section
+  <section id="recommendations" class="section">
+    <h2>Recommendations</h2>
+    <p>Discover recipes based on your preferences and previous choices.</p>
+    <div class="recipe-cards">
+      <div class="recipe-card">
+        <img src="./images/recipe1.jpg" alt="Recipe 1">
+        <h4>Grilled Chicken Salad</h4>
+        <p>Calories: 350</p>
+        <p>Time: 20 mins</p>
+        <p>Difficulty: Easy</p>
+        <a href="recipe1.html" class="btn">View Recipe</a>
+      </div>
+      Add more recipe cards as needed
+    </div>
+  </section>
+
+  Difficulty Estimator Section
+  <section id="difficulty-estimator" class="section">
+    <h2>Difficulty Estimator</h2>
+    <p>Estimate the difficulty level of a recipe based on cooking time and complexity.</p>
+    <form id="difficulty-form">
+      <label for="cook-time">Cooking Time (minutes):</label>
+      <input type="number" id="cook-time" name="cook-time" min="1" required>
+      
+      <label for="complexity">Recipe Complexity:</label>
+      <select id="complexity" name="complexity" required>
+        <option value="">Select</option>
+        <option value="easy">Easy</option>
+        <option value="medium">Medium</option>
+        <option value="hard">Hard</option>
+      </select>
+      
+      <button type="submit">Estimate Difficulty</button>
+    </form>
+    <div id="difficulty-result" class="result hidden">
+      <h3>Estimated Difficulty Level:</h3>
+      <p id="difficulty-level"></p>
+    </div>
+  </section>
+
+  Footer
+  <footer>
+    <p>&copy; 2024 Digital Cookbook. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    // JavaScript for Difficulty Estimator
+    document.getElementById('difficulty-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+      
+      const cookTime = parseInt(document.getElementById('cook-time').value);
+      const complexity = document.getElementById('complexity').value;
+      let difficulty = '';
+
+      if (complexity === 'easy') {
+        difficulty = cookTime <= 30 ? 'Easy' : 'Medium';
+      } else if (complexity === 'medium') {
+        difficulty = cookTime <= 45 ? 'Medium' : 'Hard';
+      } else if (complexity === 'hard') {
+        difficulty = cookTime <= 60 ? 'Hard' : 'Very Hard';
+      }
+
+      document.getElementById('difficulty-level').textContent = difficulty;
+      document.getElementById('difficulty-result').classList.remove('hidden');
+    });
+  </script>
+
+</body>
+</html>  -->
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Digital Cookbook</title>
-  <link rel="stylesheet" href="styles2.css"> <!-- Link to your external CSS file -->
+  <link rel="stylesheet" href="styles2.css">
 </head>
 <body>
-
-  <!-- Header with Navigation Links -->
+  <!-- Header and Navigation -->
   <header class="main-header">
     <div class="logo">Digital Cookbook</div>
     <nav>
@@ -41,75 +160,68 @@
       
       <button type="submit">Search Recipes</button>
     </form>
+
+    <!-- Results Section -->
+    <div id="search-results" class="recipe-cards"></div>
   </section>
 
-  <!-- Recommendations Section -->
-  <section id="recommendations" class="section">
-    <h2>Recommendations</h2>
-    <p>Discover recipes based on your preferences and previous choices.</p>
-    <div class="recipe-cards">
-      <div class="recipe-card">
-        <img src="./images/recipe1.jpg" alt="Recipe 1">
-        <h4>Grilled Chicken Salad</h4>
-        <p>Calories: 350</p>
-        <p>Time: 20 mins</p>
-        <p>Difficulty: Easy</p>
-        <a href="recipe1.html" class="btn">View Recipe</a>
-      </div>
-      <!-- Add more recipe cards as needed -->
-    </div>
-  </section>
-
-  <!-- Difficulty Estimator Section -->
-  <section id="difficulty-estimator" class="section">
-    <h2>Difficulty Estimator</h2>
-    <p>Estimate the difficulty level of a recipe based on cooking time and complexity.</p>
-    <form id="difficulty-form">
-      <label for="cook-time">Cooking Time (minutes):</label>
-      <input type="number" id="cook-time" name="cook-time" min="1" required>
-      
-      <label for="complexity">Recipe Complexity:</label>
-      <select id="complexity" name="complexity" required>
-        <option value="">Select</option>
-        <option value="easy">Easy</option>
-        <option value="medium">Medium</option>
-        <option value="hard">Hard</option>
-      </select>
-      
-      <button type="submit">Estimate Difficulty</button>
-    </form>
-    <div id="difficulty-result" class="result hidden">
-      <h3>Estimated Difficulty Level:</h3>
-      <p id="difficulty-level"></p>
-    </div>
-  </section>
-
-  <!-- Footer -->
   <footer>
     <p>&copy; 2024 Digital Cookbook. All Rights Reserved.</p>
   </footer>
 
   <script>
-    // JavaScript for Difficulty Estimator
-    document.getElementById('difficulty-form').addEventListener('submit', function(event) {
+    const app_id = '732ca99a';  // Replace with your Edamam App ID
+    const app_key = '021450b847979a873bd44929c9d581ed';  // Replace with your Edamam App Key
+
+    document.getElementById('search-form').addEventListener('submit', function(event) {
       event.preventDefault();
       
-      const cookTime = parseInt(document.getElementById('cook-time').value);
-      const complexity = document.getElementById('complexity').value;
-      let difficulty = '';
+      const ingredients = document.getElementById('ingredients').value;
+      const maxTime = document.getElementById('cooking-time').value;
+      const difficulty = document.getElementById('difficulty').value;
 
-      if (complexity === 'easy') {
-        difficulty = cookTime <= 30 ? 'Easy' : 'Medium';
-      } else if (complexity === 'medium') {
-        difficulty = cookTime <= 45 ? 'Medium' : 'Hard';
-      } else if (complexity === 'hard') {
-        difficulty = cookTime <= 60 ? 'Hard' : 'Very Hard';
+      // Set time limits based on difficulty level
+      let difficultyTimeLimit;
+      if (difficulty === 'easy') {
+        difficultyTimeLimit = 30;  // Recipes with a max cooking time of 30 mins
+      } else if (difficulty === 'medium') {
+        difficultyTimeLimit = 60;  // Recipes with a max cooking time of 60 mins
+      } else if (difficulty === 'hard') {
+        difficultyTimeLimit = 120; // Recipes with a max cooking time of 120 mins
       }
 
-      document.getElementById('difficulty-level').textContent = difficulty;
-      document.getElementById('difficulty-result').classList.remove('hidden');
-    });
-  </script>
+      // Adjust max cooking time according to selected difficulty
+      const cookingTime = difficulty !== 'any' ? difficultyTimeLimit : maxTime;
 
+      // Build Edamam API URL with query parameters
+      let url = `https://api.edamam.com/search?q=${ingredients}&app_id=${app_id}&app_key=${app_key}&time=1-${cookingTime}&from=0&to=10`;
+
+      fetch(url)
+        .then(response => response.json())
+        .then(data => displayRecipes(data.hits))
+        .catch(error => console.error('Error fetching recipes:', error));
+    });
+
+    function displayRecipes(recipes) {
+      const resultsContainer = document.getElementById('search-results');
+      resultsContainer.innerHTML = '';  // Clear previous results
+
+      recipes.forEach(recipeData => {
+        const recipe = recipeData.recipe;
+        const recipeCard = document.createElement('div');
+        recipeCard.classList.add('recipe-card');
+        
+        recipeCard.innerHTML = `
+          <img src="${recipe.image}" alt="${recipe.label}">
+          <h4>${recipe.label}</h4>
+          <p>Calories: ${Math.round(recipe.calories)}</p>
+          <p>Time: ${recipe.totalTime ? recipe.totalTime + ' mins' : 'N/A'}</p>
+          <a href="${recipe.url}" target="_blank" class="btn">View Recipe</a>
+        `;
+        
+        resultsContainer.appendChild(recipeCard);
+      });
+    }
+  </script>
 </body>
 </html>
