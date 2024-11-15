@@ -5,15 +5,10 @@
 const fs = require('fs');
 const path = require('path');
 
-// Import the file content and evaluate it in a function to avoid top-level DOM manipulation
+// Create a script element and inject difficulty-estimator.js content
 const diffEstimatorContent = fs.readFileSync(path.resolve(__dirname, '../difficulty-estimator.js'), 'utf8');
-
-// Wrap the content in a function to avoid immediate execution
-const initDiffEstimator = new Function(`
-    return function init() {
-        ${diffEstimatorContent}
-    }
-`)();
+const script = document.createElement('script');
+script.textContent = diffEstimatorContent;
 
 describe('Difficulty Estimator Tests', () => {
     beforeEach(() => {
@@ -30,8 +25,14 @@ describe('Difficulty Estimator Tests', () => {
             <button id="myButton"></button>
         `;
 
-        // Now initialize the difficulty estimator
-        initDiffEstimator();
+        // Inject the script after DOM setup
+        document.body.appendChild(script);
+
+        // Make functions globally available
+        window.findDifficulty = findDifficulty;
+        window.returnToDefault = returnToDefault;
+        window.changeToSelected = changeToSelected;
+        window.countIng = countIng;
     });
 
     test('findDifficulty calculates difficulty and updates DOM', () => {
@@ -94,4 +95,3 @@ describe('Difficulty Estimator Tests', () => {
         expect(count).toBe(6);
     });
 });
-
