@@ -1,15 +1,15 @@
-name: CI/CD Pipeline for Meal Planning Website
+name: CI for Automated Tests
 
 on:
   push:
     branches:
-      - main  # Run the pipeline on pushes to the main branch
+      - main
   pull_request:
     branches:
       - main
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
 
     steps:
@@ -19,29 +19,10 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '14'  # Adjust Node.js version if needed
+          node-version: '22.11.0'  # Set to your current Node.js version
 
       - name: Install dependencies
         run: npm install
 
       - name: Run tests
-        run: npm test  # Update this command to your specific testing setup
-
-      - name: Build project
-        run: npm run build  # Adjust if your build command is different
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'  # Only deploy from main branch
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Deploy to Vercel
-        env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}  # Add your Vercel token as a secret
-        run: |
-          npm install -g vercel
-          vercel --prod --token $VERCEL_TOKEN
+        run: npm test
