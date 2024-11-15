@@ -1,16 +1,21 @@
 {
-  "name": "Cloud-14-Project",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "jest"
-  },
-  "dependencies": {},
-  "devDependencies": {
-    "jest": "^29.2.0"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
-}
+    "name": "cloud-14-project",
+    "version": "1.0.0",
+    "description": "This is the term project of group cloud 14 for the course CMPT-276",
+    "main": "index.js",
+    "scripts": {
+      "test": "jest",
+      "test:watch": "jest --watch"
+    },
+    "devDependencies": {
+      "@testing-library/jest-dom": "^6.6.3",
+      "jest": "^29.7.0",
+      "jest-environment-jsdom": "^29.7.0"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "directories": {
+      "test": "tests"
+    }
+  }
