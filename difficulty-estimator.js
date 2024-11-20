@@ -61,7 +61,6 @@ function findDifficulty() {
     difficulty = difficulty.toFixed(1);
 
     // Ensure the h2 element is being created and appended
-    const newHeader = document.createElement("h2");
     newHeader.innerHTML = `Your Difficulty is ${difficulty}`;
     
     // Log the header element to ensure it's being created
