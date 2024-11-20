@@ -1,11 +1,4 @@
 
-/*
-const findDifficulty = require('../difficulty-estimator');
-const  changeToSelected = require('../difficulty-estimator');
-const returnToDefault = require('../difficulty-estimator');
-const countIng = require('../difficulty-estimator');
-*/
-
 describe('Difficulty Estimator Tests', () => {
 
     beforeAll(() => {
