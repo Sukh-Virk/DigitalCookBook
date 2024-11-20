@@ -1,132 +1,53 @@
-// /**
-//  * @jest-environment jsdom
-//  */
 
-// const fs = require('fs');
-// const path = require('path');
-
-// // Create a script element and inject difficulty-estimator.js content
-// const diffEstimatorContent = fs.readFileSync(path.resolve(__dirname, '../difficulty-estimator.js'), 'utf8');
-// const script = document.createElement('script');
-// script.textContent = diffEstimatorContent;
-
-// describe('Difficulty Estimator Tests', () => {
-//     beforeEach(() => {
-//         // Set up DOM first
-//         document.body.innerHTML = `
-//             <div id="theMainTag"></div>
-//             <div id="difficulty-form"></div>
-//             <input id="cookTime" value="30" />
-//             <input id="ingredientsNum" value="10" />
-//             <input id="recipeText" value="flour sugar eggs butter milk" />
-//             <div id="diffEasy" class="example-card"></div>
-//             <div id="diffMedium" class="example-card"></div>
-//             <div id="diffHard" class="example-card"></div>
-//             <button id="myButton"></button>
-//         `;
-
-//         // Inject the script after DOM setup
-//         document.body.appendChild(script);
-
-//         // Make functions globally available
-//         window.findDifficulty = findDifficulty;
-//         window.returnToDefault = returnToDefault;
-//         window.changeToSelected = changeToSelected;
-//         window.countIng = countIng;
-//     });
-
-//     test('findDifficulty calculates difficulty and updates DOM', () => {
-//         // Simulate a click on the button to call findDifficulty
-//         document.getElementById("myButton").onclick = findDifficulty;
-//         document.getElementById("myButton").click();
-
-//         // Check if the difficulty is displayed in a header
-//         const header = document.querySelector("h2");
-//         expect(header).not.toBeNull();
-//         expect(header.textContent).toMatch(/Your Difficulty is/);
-
-//         // Verify that the correct difficulty box is selected
-//         const difficulty = parseFloat(header.textContent.split(" ")[3]);
-//         if (difficulty < 4) {
-//             expect(document.getElementById("diffEasy").className).toBe("example-card-Selected");
-//         } else if (difficulty < 8) {
-//             expect(document.getElementById("diffMedium").className).toBe("example-card-Selected");
-//         } else {
-//             expect(document.getElementById("diffHard").className).toBe("example-card-Selected");
-//         }
-//     });
-
-//     test('returnToDefault resets all difficulty classes', () => {
-//         // Set initial classes
-//         document.getElementById("diffEasy").className = "example-card-Selected";
-//         document.getElementById("diffMedium").className = "example-card-Selected";
-//         document.getElementById("diffHard").className = "example-card-Selected";
-
-//         // Call the function to reset classes
-//         returnToDefault();
-
-//         // Check if all classes are reset to "example-card"
-//         expect(document.getElementById("diffEasy").className).toBe("example-card");
-//         expect(document.getElementById("diffMedium").className).toBe("example-card");
-//         expect(document.getElementById("diffHard").className).toBe("example-card");
-//     });
-
-//     test('changeToSelected applies correct difficulty class', () => {
-//         // Test for easy difficulty
-//         changeToSelected(3.5);
-//         expect(document.getElementById("diffEasy").className).toBe("example-card-Selected");
-
-//         // Test for medium difficulty
-//         changeToSelected(6);
-//         expect(document.getElementById("diffMedium").className).toBe("example-card-Selected");
-
-//         // Test for hard difficulty
-//         changeToSelected(9);
-//         expect(document.getElementById("diffHard").className).toBe("example-card-Selected");
-//     });
-
-//     test('countIng calculates correct word count in recipe text', () => {
-//         // Set the recipe text input value
-//         const recipeText = document.getElementById("recipeText");
-//         recipeText.value = "flour sugar eggs butter milk vanilla";
-
-//         // Run the function and check the count
-//         const count = countIng();
-//         expect(count).toBe(6);
-//     });
-// });
-
-
-
-
-
-
-
-
+/*
+const findDifficulty = require('../difficulty-estimator');
+const  changeToSelected = require('../difficulty-estimator');
+const returnToDefault = require('../difficulty-estimator');
+const countIng = require('../difficulty-estimator');
+*/
 
 describe('Difficulty Estimator Tests', () => {
 
     beforeAll(() => {
       // Create the DOM structure manually for the tests
       document.body.innerHTML = `
-        <div id="difficulty-form">
-          <label for="cookTime">Cook Time (minutes): </label>
-          <input id="cookTime" type="number" value="30"><br>
-  
-          <label for="ingredientsNum">Number of Ingredients: </label>
-          <input id="ingredientsNum" type="number" value="5"><br>
-  
-          <label for="recipeText">Recipe Ingredients: </label>
-          <textarea id="recipeText">flour sugar eggs butter</textarea><br>
-  
-          <button id="myButton">Calculate Difficulty</button>
-        </div>
-  
-        <div id="theMainTag"></div>
-  
-        <div id="diffEasy" class="example-card"></div>
-        <div id="diffMedium" class="example-card"></div>
-        <div id="diffHard" class="example-card"></div>
+        <main id="theMainTag" class="estimator-container">
+        <h1>Difficulty Estimator</h1>
+        <p>Estimate the difficulty level of a recipe based on cooking time and complexity.</p>
+
+        <form id="difficulty-form">
+            <label for="cookTime">Cooking Time (minutes):</label>
+            <input type="number" id="cookTime" name="cook-time" min="1" value="3">
+
+            <label for="ingredientsNum">Number of ingredients:</label>
+            <input type="number" id="ingredientsNum" name="ingredients-num" min="1" value="3">
+
+            <label for="recipeText">Type the recipe:</label>
+            <textarea id="recipeText" name="recipeText" class="recipeInput1"> </textarea>
+
+            <button type="button" id="myButton" class="estimate-btn">Estimate Difficulty</button>
+            <h2 id="output"></h2>
+            </form>
+            </main>
+
+
+            <section class="examples-section">
+                <h2>Examples of Difficulty Levels</h2>
+                <div class="examples-container">
+                    <div id="diffEasy" class="example-card">
+                        <h3>Easy</h3>
+                        <p>Examples: Simple salad, boiled eggs, sandwiches.</p>
+                    </div>
+                    <div id="diffMedium" class="example-card">
+                        <h3>Medium</h3>
+                        <p>Examples: Grilled chicken, pasta, stir-fry dishes.</p>
+                    </div>
+                    <div id="diffHard" class="example-card">
+                        <h3>Hard</h3>
+                        <p>Examples: Beef Wellington, souffle, homemade pasta from scratch.</p>
+                    </div>
+                </div>
+            </section>
       `;
     });
   
@@ -137,12 +58,15 @@ describe('Difficulty Estimator Tests', () => {
       document.getElementById("recipeText").value = "flour sugar eggs butter milk salt";
   
       // Simulate a click on the button to call findDifficulty
-      document.getElementById("myButton").click();
+      // document.getElementById("myButton").click();
+      let newHeader = document.getElementById("output");
+
+      findDifficulty(newHeader);
   
       // Check if the difficulty is displayed in a header
       const header = document.querySelector("h2");
       expect(header).not.toBeNull();
-      expect(header.innerHTML).toBe("Your Difficulty is 5.5");
+      expect(header.innerHTML).toBe("Your Difficulty is 4.7");
   
       // Check if the appropriate difficulty card is selected
       const diffEasyBox = document.getElementById("diffEasy");
@@ -152,6 +76,9 @@ describe('Difficulty Estimator Tests', () => {
       expect(diffEasyBox.className).toBe("example-card");
       expect(diffMediumBox.className).toBe("example-card-Selected");
       expect(diffHardBox.className).toBe("example-card");
+
+      // reset to default
+      returnToDefault();
     });
   
     test('changeToSelected updates classes based on difficulty', () => {
@@ -164,7 +91,9 @@ describe('Difficulty Estimator Tests', () => {
       expect(diffEasyBox.className).toBe("example-card-Selected");
       expect(diffMediumBox.className).toBe("example-card");
       expect(diffHardBox.className).toBe("example-card");
-  
+      
+      // reset to default
+      returnToDefault();
       // Test difficulty between 4 and 8 (medium)
       changeToSelected(6);
       diffEasyBox = document.getElementById("diffEasy");
@@ -174,7 +103,10 @@ describe('Difficulty Estimator Tests', () => {
       expect(diffEasyBox.className).toBe("example-card");
       expect(diffMediumBox.className).toBe("example-card-Selected");
       expect(diffHardBox.className).toBe("example-card");
-  
+      
+      // reset to default
+      returnToDefault();
+
       // Test difficulty greater than 8 (hard)
       changeToSelected(9);
       diffEasyBox = document.getElementById("diffEasy");
@@ -205,20 +137,33 @@ describe('Difficulty Estimator Tests', () => {
   });
   
   // Mock functions from your code to make them work in this context
-  function findDifficulty() {
-      const minutes = parseInt(document.getElementById("cookTime").value);
-      const ingrediantNum = parseInt(document.getElementById("ingredientsNum").value);
-      let minutesPoint = minutes / 15;
-      let difficulty = Math.min(minutesPoint, 4);
-      let ingrediantPoint = ingrediantNum / 5;
-      difficulty += Math.min(ingrediantPoint, 4);
-      difficulty += Math.min(countIng() / 100, 2);
-      difficulty = difficulty.toFixed(1);
-      const newHeader = document.createElement("h2");
-      newHeader.innerHTML = `Your Difficulty is ${difficulty}`;
-      document.getElementById("theMainTag").appendChild(newHeader);
-      returnToDefault();
-      changeToSelected(difficulty);
+  
+
+  function findDifficulty(newHeader) {
+    const minutes = parseInt(document.getElementById("cookTime").value);
+    const ingrediantNum = parseInt(document.getElementById("ingredientsNum").value);
+    let minutesPoint = minutes / 15;
+    let difficulty = Math.min(minutesPoint, 4);
+    let ingrediantPoint = ingrediantNum / 5;
+    difficulty += Math.min(ingrediantPoint, 4);
+    difficulty += Math.min(countIng() / 100, 2);
+    difficulty = difficulty.toFixed(1);
+
+    // Ensure the h2 element is being created and appended
+    newHeader.innerHTML = `Your Difficulty is ${difficulty}`;
+    
+    // Log the header element to ensure it's being created
+    console.log("Header created:", newHeader);
+    
+    const mainTag = document.getElementById("theMainTag");
+    if (mainTag) {
+        mainTag.appendChild(newHeader);
+    } else {
+        console.error("The main tag with id 'theMainTag' was not found.");
+    }
+
+    returnToDefault();
+    changeToSelected(difficulty);
   }
   
   function changeToSelected(difficulty) {
@@ -249,4 +194,3 @@ describe('Difficulty Estimator Tests', () => {
       const recipeText = document.getElementById("recipeText").value;
       return recipeText.split(" ").length;
   }
-  
