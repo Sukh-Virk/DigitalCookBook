@@ -17,7 +17,8 @@ function drop(event) {
   if (draggedItem) {
     const targetUl = event.target.closest(".day").querySelector("ul");
     targetUl.appendChild(draggedItem);
-    // After adding to planner, add remove button to the item
+
+    // Add remove button to the dragged item
     const removeBtn = document.createElement("button");
     removeBtn.textContent = "Remove";
     removeBtn.classList.add("remove-btn");
@@ -40,13 +41,18 @@ document.getElementById("meal-form").addEventListener("submit", (e) => {
   const query = document.getElementById("meal-search").value.trim();
   if (!query) return;
 
-  const apiUrl = `https://api.spoonacular.com/recipes/complexSearch?query=${query}&number=5&apiKey=${apiKey}`;
+  const resultsList = document.getElementById("search-results");
+  resultsList.innerHTML = "<li>Loading...</li>"; // Show loading message
+
+  const apiUrl = `https://api.spoonacular.com/recipes/complexSearch?query=${query}&number=5&apiKey=${apiKey}&_=${new Date().getTime()}`; // Cache-busting
 
   fetch(apiUrl)
-    .then((response) => response.json())
+    .then((response) => {
+      if (!response.ok) throw new Error("API request failed");
+      return response.json();
+    })
     .then((data) => {
-      const resultsList = document.getElementById("search-results");
-      resultsList.innerHTML = ""; // Clear previous results
+      resultsList.innerHTML = ""; // Clear loading message
 
       if (data.results && data.results.length > 0) {
         data.results.forEach((recipe) => {
@@ -62,33 +68,30 @@ document.getElementById("meal-form").addEventListener("submit", (e) => {
           const title = document.createElement("span");
           title.textContent = recipe.title;
 
-          // No "Add to Planner" button needed, just make it draggable
-
           listItem.appendChild(image);
           listItem.appendChild(title);
           resultsList.appendChild(listItem);
         });
       } else {
-        resultsList.innerHTML = "<li>No results found.</li>";
+        resultsList.innerHTML = "<li>No results found. Try a different query.</li>";
       }
     })
-    .catch((error) => console.error("Error fetching recipes:", error));
+    .catch((error) => {
+      resultsList.innerHTML = "<li>Error fetching recipes. Please try again.</li>";
+      console.error("Error fetching recipes:", error);
+    });
 });
 
 // Remove Meal from Day and Update Plan
 function removeMeal(mealItem, mealId) {
-  // Remove meal from the day
   mealItem.remove();
 
-  // Remove meal from the localStorage
   const savedPlan = JSON.parse(localStorage.getItem("mealPlan")) || {};
   Object.keys(savedPlan).forEach((day) => {
-    savedPlan[day] = savedPlan[day].filter(meal => meal.id !== mealId);
+    savedPlan[day] = savedPlan[day].filter((meal) => meal.id !== mealId);
   });
 
   localStorage.setItem("mealPlan", JSON.stringify(savedPlan));
-
-  // Add the meal back to the search results
   addMealBackToSearch(mealItem);
 }
 
@@ -150,7 +153,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const title = document.createElement("span");
         title.textContent = meal.title;
 
-        // Create remove button
         const removeBtn = document.createElement("button");
         removeBtn.textContent = "Remove";
         removeBtn.classList.add("remove-btn");
