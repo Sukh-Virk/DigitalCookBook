@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meal Recommendation</title>
+  <link rel="stylesheet" href="stylesrecommendation.css">
+</head>
+<body>
+  <header>
+    <h1>Find The Meal Right For You</h1>
+    <nav>
+      <ul class="navigation">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#features">Features</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="meal-recommendation">
+      <h2>Find Recipes Using Your Ingredients</h2>
+      <p>Enter the ingredients you have, and we’ll recommend some recipes!</p>
+
+      <form id="ingredientForm" class="input-form">
+        <input 
+          type="text" 
+          id="ingredients" 
+          name="ingredients" 
+          placeholder="e.g., chicken, garlic, tomatoes" 
+          required 
+        />
+        <button type="submit" class="btn">Find Recipes</button>
+      </form>
+
+      <div id="recipeResults" class="recipe-grid"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2024 Meal Planner. All rights reserved.</p>
+  </footer>
+
+  <script src="recommendation.js"></script>
+</body>
+</html>
