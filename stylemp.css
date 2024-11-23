@@ -1,0 +1,273 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #2f4f4f;
+    margin: 0;
+    padding: 0;
+  }
+  
+  
+  /* Header Section */
+  header {
+    display: flex;
+    align-items: center; /* Center items vertically */
+    justify-content: space-between; /* Space out navigation and heading */
+    background-color: #4CAF50;
+    color: white;
+    padding: 20px 40px; /* Add balanced spacing */
+    box-sizing: border-box;
+  }
+  
+  /* Heading Styling */
+  header h1 {
+    margin: 0;
+    font-size: 2rem;
+    text-align: center;
+    flex: 1; /* Allow heading to take available space */
+    margin-left: 50px; /* Move the heading slightly to the right */
+  }
+  
+  /* Navigation Styling */
+  header nav {
+    flex-shrink: 0; /* Keep navigation size consistent */
+  }
+  
+  header nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 20px; /* Space between links */
+  }
+  
+  header nav li {
+    display: inline-block;
+  }
+  
+  header nav a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+  }
+  
+  header nav a:hover {
+    color: #ffeb3b;
+  }
+  
+  
+  
+  /* Footer Section */
+  footer {
+    background-color: #228b22; /* Darker green */
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+  }
+  
+  /* Meal Planning Section */
+  #meal-planner {
+    padding: 2rem;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin: 2rem auto;
+    width: 90%;
+    max-width: 1200px;
+  }
+  
+  #meal-planner h2 {
+    font-size: 2rem;
+    color: #228b22; /* Darker green */
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  #planner {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  /* Feature Cards */
+  .day {
+    background-color: #dff5df; /* Light green bubble background */
+    border-radius: 50px; /* Rounded bubble effect */
+    padding: 2rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* More pronounced shadow */
+    text-align: center;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 2px solid #228b22; /* Green border for the bubble */
+  }
+  
+  .day:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25); /* Stronger hover effect */
+  }
+  
+  .day h3 {
+    background-color: #228b22; /* Darker green */
+    color: white;
+    padding: 0.75rem;
+    border-radius: 50px 50px 0 0;
+    margin: -2rem -2rem 1rem -2rem;
+    font-size: 1.5rem;
+  }
+  
+  .day ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .day li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.5rem;
+    border: 1px solid #228b22; /* Green border */
+    border-radius: 15px;
+    margin-bottom: 0.5rem;
+    background-color: #f9f9f9; /* Subtle background inside the bubble */
+    transition: background-color 0.3s ease;
+    cursor: grab;
+  }
+  
+  .day li:hover {
+    background-color: #d2f8d2; /* Highlighted green */
+  }
+  
+  .day li img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 15px;
+  }
+  
+  /* Add to Planner Button */
+  .add-btn {
+    background-color: #228b22; /* Darker green */
+    color: white;
+    border: none;
+    padding: 0.3rem 0.75rem;
+    font-size: 0.8rem;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .add-btn:hover {
+    background-color: #006400; /* Even darker green */
+  }
+  
+  /* Remove Button Styling */
+  .remove-btn {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 0.3rem 0.75rem;
+    font-size: 0.8rem;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .remove-btn:hover {
+    background-color: #ff1a1a;
+  }
+  
+  /* Save Plan Button Styling */
+  #save-plan {
+    display: block;
+    margin: 2rem auto 0;
+    padding: 0.75rem 2rem;
+    font-size: 1.2rem;
+    background-color: #228b22; /* Darker green */
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  #save-plan:hover {
+    background-color: #006400; /* Even darker green */
+    transform: scale(1.05);
+  }
+  
+  /* Search Results */
+  #meal-selector {
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  
+  #meal-selector form {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  #meal-selector input,
+  #meal-selector button {
+    padding: 0.75rem;
+    border-radius: 10px;
+    border: 1px solid #228b22; /* Darker green */
+  }
+  
+  #meal-selector button {
+    background-color: #228b22; /* Darker green */
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  #meal-selector button:hover {
+    background-color: #006400; /* Even darker green */
+    transform: scale(1.05);
+  }
+  
+  #search-results {
+    list-style: none;
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+  }
+  
+  #search-results li {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    cursor: grab;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  #search-results li:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  }
+  
+  #search-results img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 15px;
+  }
+  
+  #search-results span {
+    font-size: 1.1rem;
+    color: #2f4f4f;
+    font-weight: bold;
+  }
