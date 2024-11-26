@@ -315,13 +315,14 @@ body {
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   text-align: center;
-  padding: 20px;
+  padding: 15px;
   transition: transform 0.3s, box-shadow 0.3s;
-  color: #333;
-  position: relative; /* Ensures children position correctly */
+  position: relative;
   overflow: hidden;
-  z-index: 1; /* Make sure it is above pseudo-elements */
+  height: auto; /* Allow cards to grow */
+  min-height: 350px; /* Ensures uniform height */
 }
+
 
 .card h3 {
   color: #4CAF50; /* Replace with your desired color */
