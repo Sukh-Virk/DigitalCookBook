@@ -8,3 +8,16 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 500); // Matches fade-out transition
     }, 2000); // Time for animation (adjust as needed)
 });
+
+
+document.querySelectorAll('.use-btn').forEach((button) => {
+    button.addEventListener('click', () => {
+      const target = button.getAttribute('data-href');
+      if (target) {
+        window.location.href = target; // Navigate to the target page
+      } else {
+        console.error('No target URL specified for this button.');
+      }
+    });
+  });
+  

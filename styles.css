@@ -23,45 +23,48 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 5%;
-  background: linear-gradient(45deg, #4CAF50, #66BB6A, #388E3C);
-  color: #fff;
-  position: fixed;
-  width: 100%;
-  top: 0;
-  z-index: 1000;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  padding: 20px 40px; /* Reduced padding for a slimmer header */
+  background: linear-gradient(45deg, #4CAF50, #66BB6A); /* Green gradient */
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  height: 80px; /* Set a fixed height for the header */
 }
 
 /* Logo Styling */
-.logo h1 {
-  font-size: 26px;
-  font-weight: bold;
-  color: #fff;
-  margin: 0;
+.logo {
+  text-decoration: none; /* Remove underline */
+  color: white; /* Default color */
+  font-size: 18px; /* Slightly smaller font size */
+  font-weight: bold; /* Bold font */
+  transition: color 0.3s ease-in-out; /* Smooth transition for hover effect */
 }
 
-/* Navigation Styling */
+.logo:hover {
+  color: yellow; /* Change to yellow on hover */
+}
+
+/* Navigation Menu Styling */
 .navigation {
   list-style: none;
   display: flex;
-  gap: 20px;
+  gap: 15px; /* Even spacing between navigation items */
   margin: 0;
   padding: 0;
 }
 
 .navigation a {
-  color: #fff;
-  text-decoration: none;
-  font-size: 16px;
+  color: white; /* Default color */
+  text-decoration: none; /* Remove underline */
+  font-size: 1.1rem; /* Slightly smaller font size */
   font-weight: 600;
-  transition: color 0.3s;
+  transition: color 0.3s ease-in-out; /* Smooth color change on hover */
 }
 
 .navigation a:hover {
-  color: #ffeb3b;
-  text-decoration: underline;
+  color: yellow; /* Change to yellow on hover */
 }
+
+
 
 /* Hero Section Styling */
 .hero {
@@ -282,9 +285,11 @@ body {
 }
 
 /* Feature Section with Bubbles */
+
+/* Features Section Styling */
 .features-section {
-  padding: 60px 20px;
-  text-align: center;
+  padding: 50px 20px;
+  text-align: center; /* Center the title */
   background-color: #f9f9f9;
 }
 
@@ -298,11 +303,13 @@ body {
 
 .feature-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjusts to screen size */
   gap: 20px;
-  padding: 0 20px;
+  justify-content: center;
 }
 
+
+/* Card Styling */
 .card {
   background-color: #fff;
   border-radius: 10px;
@@ -310,11 +317,73 @@ body {
   text-align: center;
   padding: 20px;
   transition: transform 0.3s, box-shadow 0.3s;
-  text-decoration: none;
   color: #333;
-  position: relative;
+  position: relative; /* Ensures children position correctly */
   overflow: hidden;
+  z-index: 1; /* Make sure it is above pseudo-elements */
 }
+
+.card h3 {
+  color: #4CAF50; /* Replace with your desired color */
+  font-size: 18px; /* Adjust font size if needed */
+  font-weight: bold; /* Optional: make it bold */
+  text-align: center; /* Optional: center-align text */
+  margin: 10px 0; /* Optional: adjust spacing */
+}
+
+
+/* Add bubbles using pseudo-elements */
+.card::before,
+.card::after {
+  content: '';
+  position: absolute;
+  background-color: rgba(76, 175, 80, 0.2); /* Light green bubble color */
+  border-radius: 50%;
+  z-index: 0; /* Ensure bubbles are behind other elements */
+  pointer-events: none; /* Disable interaction with pseudo-elements */
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+/* Bubble 1 */
+.card::before {
+  width: 120px;
+  height: 120px;
+  top: -50px;
+  left: -50px;
+  opacity: 0.8;
+}
+
+/* Bubble 2 */
+.card::after {
+  width: 180px;
+  height: 180px;
+  bottom: -60px;
+  right: -60px;
+  opacity: 0.6;
+}
+
+/* Button Styling */
+.use-btn {
+  display: inline-block;
+  background-color: #4CAF50;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+  position: relative; /* Remove absolute positioning */
+  z-index: 2; /* Ensure button is above pseudo-elements */
+  transition: background-color 0.3s, transform 0.3s;
+  cursor: pointer;
+}
+
+.use-btn:hover {
+  background-color: #388E3C;
+  transform: scale(1.05);
+}
+
+
 
 /* Add bubbles using pseudo-elements */
 .card::before,
@@ -444,6 +513,4 @@ footer {
     }
     
 
- 
-  
 
