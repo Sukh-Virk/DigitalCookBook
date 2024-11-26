@@ -1,25 +1,29 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nutrition Calculator - Digital Cookbook</title>
-    <link rel="stylesheet" href="calculator.css"> 
+    <link rel="stylesheet" href="calculator.css">
 </head>
 <body>
-
-    
+  <div class="bubble-container">
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
     <header class="header">
         <div class="logo">Digital Cookbook</div>
         <nav>
             <ul class="navigation">
                 <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
             </ul>
         </nav>
     </header>
 
-    
     <main class="calculator-container">
         <h1>Nutrition Calculator</h1>
         
@@ -34,16 +38,12 @@
             <button onclick="calculateNutrition()" class="calculate-btn">Calculate Nutrition</button>
         </div>
 
-        <div class="results-section" id="nutritionResults">
-            
-        </div>
+        <div class="results-section" id="nutritionResults"></div>
     </main>
 
-  
     <section class="common-items-section">
         <h2>Commonly Searched Items</h2>
         <div class="common-items-container">
-           
             <div class="item-card">
                 <img src="./images/rice-3506194_1280.jpg" alt="1 cup of rice">
                 <h3>1 Cup of Rice</h3>
@@ -62,11 +62,9 @@
                 <p>Calories: 89 kcal</p>
                 <button onclick="addItemToSearch('1 banana')">Add to Calculator</button>
             </div>
-            
         </div>
     </section>
 
- 
     <footer class="footer">
         <p>&copy; 2024 Digital Cookbook. All Rights Reserved.</p>
     </footer>
@@ -74,3 +72,4 @@
     <script src="calculator.js"></script>
 </body>
 </html>
+
