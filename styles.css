@@ -363,24 +363,29 @@ body {
 }
 
 /* Button Styling */
-.use-btn {
-  display: inline-block;
+/* Styling for the "Use Feature" button */
+.card .use-btn {
   background-color: #4CAF50;
-  color: #fff;
-  padding: 10px 20px;
+  color: white;
+  border: none;
   border-radius: 5px;
-  text-decoration: none;
+  padding: 10px 20px;
   font-size: 14px;
   font-weight: bold;
-  position: relative; /* Remove absolute positioning */
-  z-index: 2; /* Ensure button is above pseudo-elements */
-  transition: background-color 0.3s, transform 0.3s;
   cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
-.use-btn:hover {
+.card .use-btn:hover {
   background-color: #388E3C;
   transform: scale(1.05);
+}
+
+.card .use-btn:active {
+  background-color: #2E7D32;
 }
 
 
@@ -512,5 +517,3 @@ footer {
       }
     }
     
-
-
