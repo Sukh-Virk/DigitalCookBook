@@ -1,5 +1,5 @@
 let apiUrlInfo = "";
-const apiKey = "2ff1946c55d04a3eb0ff3ab7fc954670";
+const apiKey = "018a8a4807d9460d8f82a1fa2b4ae3a9";
 document.getElementById("ingredientForm").addEventListener("submit", function (e) {
     e.preventDefault();
   
@@ -33,10 +33,15 @@ document.getElementById("ingredientForm").addEventListener("submit", function (e
   async function displayRecipes(recipes) {
     const resultsDiv = document.getElementById("recipeResults");
     resultsDiv.innerHTML = ""; // Clear previous results
+    
+
   
     if (recipes.length === 0) {
       resultsDiv.innerHTML = "<p>No recipes found. Try different ingredients.</p>";
       return;
+    }else{
+      // Intro text
+      resultsDiv.innerHTML = `<div class="recipeIntro">Based on your preferred ingredients, we recommend:</div>`;
     }
   
     recipes.forEach(async function(recipe){
@@ -54,23 +59,32 @@ document.getElementById("ingredientForm").addEventListener("submit", function (e
       
       difficulty = await findInfo();
       if(difficulty==0){
-        difficultyText+= "Difficulty: undefined";
+        difficultyText+= " undefined";
       }else{
-        difficultyText+= `Difficulty: ${difficulty}/10`;
+        difficultyText+= ` ${difficulty}/10`;
       }
-
-      console.log(difficultyText);
-  
+      
+      // make the main container of the recipe
       const recipeDiv = document.createElement("div");
       recipeDiv.classList.add("recipe");
+      recipeDiv.className = "recipeDiv";
+
+      // Container for title
+
   
       recipeDiv.innerHTML = `
-        <p>Based on your preferred ingredients, we recommend:</p>
-        <h3>${recipe.title}</h3>
-        <img src="${recipe.image}" alt="${recipe.title}">
-        <p>${difficultyText}</p>
-        <p><strong>Key Ingredients:</strong> ${ingredientList}</p>
-        <a href="https://spoonacular.com/recipes/${recipe.title.replace(/\s/g, "-")}-${recipe.id}" target="_blank">View Recipe</a>
+        <div class="recipeName">${recipe.title}</div>
+        <hr>
+        <div class="recipeMain">
+          <img src="${recipe.image}" class="recipeImage" alt="${recipe.title}">
+          <div class="recipeInfo">
+            <div class="recipeIng"><strong>Key Ingredients:</strong> ${ingredientList}</div>
+            <div class="recipeDiff"><strong>Difficulty</strong>${difficultyText}</div>
+            <div class="recipeLink">
+              <a href="https://spoonacular.com/recipes/${recipe.title.replace(/\s/g, "-")}-${recipe.id}" target="_blank">View Recipe -></a>
+            </div>
+          </div>
+        </div>
       `;
   
       resultsDiv.appendChild(recipeDiv);
