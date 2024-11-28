@@ -1,4 +1,18 @@
 /* Header Section */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+/* General Body and Layout Styles */
+body {
+  font-family: 'Poppins', sans-serif;
+  background: white;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+
+
 header {
   display: flex;
   justify-content: space-between; /* Space navigation and heading */
@@ -20,6 +34,10 @@ header h1 {
 /* Navigation Styling */
 nav {
   flex-shrink: 0; /* Prevents the navigation from shrinking */
+}
+
+.logo:hover {
+  color: yellow; /* Change to yellow on hover */
 }
 
 .navigation {
@@ -142,6 +160,7 @@ footer {
   font-size: 0.9rem;
   border-radius: 8px 8px 0 0;
   box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 50px; 
 }
 
 footer p {
@@ -261,4 +280,52 @@ hr {
   background-color: #006919;
   border: 2px solid #006919;
   color: white;
+}
+
+* Moving Search Icon */
+.moving-search-icon {
+  position: relative;
+  width: 100px; /* Adjust size */
+  height: auto;
+  margin: 20px auto; /* Center the icon */
+  text-align: center;
+}
+
+.search-icon {
+  font-size: 50px; /* Adjust the size of the icon */
+  color: #4CAF50; /* Color for the icon */
+  animation: moveSearch 3s linear infinite; /* Animation effect */
+}
+
+@keyframes moveSearch {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(50%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.button-container {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Adds space between the button and the spinner */
+}
+
+.spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinner-icon {
+  font-size: 1.5rem; /* Adjust spinner size */
+  color: #218838; /* Match your theme */
+}
+
+.hidden {
+  display: none; /* Hides the spinner */
 }
