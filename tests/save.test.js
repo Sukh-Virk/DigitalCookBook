@@ -1,3 +1,5 @@
+const { saveRecipe, loadSavedRecipes } = require('../save.js');
+
 describe('Save Recipe Tests', () => {
     beforeEach(() => {
         localStorage.clear();
@@ -14,11 +16,8 @@ describe('Save Recipe Tests', () => {
             ingredients: ['pasta', 'eggs', 'cheese']
         };
 
-        const saveButton = document.getElementById('save-recipe');
-        saveButton.addEventListener('click', () => saveRecipe(recipe));
-        saveButton.click();
-
-        const savedRecipes = JSON.parse(localStorage.getItem('savedRecipes'));
+        saveRecipe(recipe);
+        const savedRecipes = JSON.parse(localStorage.getItem('savedRecipes')) || [];
         expect(savedRecipes).toContainEqual(recipe);
     });
 });

@@ -43,9 +43,7 @@ async function calculateNutrition() {
     resultsSection.innerHTML = '<p>Calculating...</p>';
 
     try {
-        // Format ingredients properly for the API
         const formattedIngredients = ingredients.map(ingredient => {
-            // Remove any special characters and extra spaces
             return ingredient.trim().replace(/[^\w\s]/gi, '');
         });
 
@@ -100,3 +98,6 @@ function displayResults(data) {
         </div>
     `;
 }
+
+// Add exports at the bottom
+module.exports = { calculateNutrition, addIngredient, removeIngredient, ingredients, displayResults };

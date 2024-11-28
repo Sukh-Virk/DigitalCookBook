@@ -1,3 +1,5 @@
+const { searchMeals, handleDrop } = require('../mealPlan.js');
+
 describe('Meal Plan Tests', () => {
     beforeEach(() => {
         document.body.innerHTML = `
@@ -26,22 +28,47 @@ describe('Meal Plan Tests', () => {
             })
         );
 
-        document.getElementById('meal-search').value = 'pasta';
         const form = document.getElementById('meal-form');
+        form.addEventListener('submit', searchMeals);
+        
+        document.getElementById('meal-search').value = 'pasta';
         form.dispatchEvent(new Event('submit'));
 
-        await new Promise(resolve => setTimeout(resolve, 0));
-        expect(document.getElementById('search-results').innerHTML).toContain('pasta');
+        await new Promise(resolve => setTimeout(resolve, 100));
+        expect(document.getElementById('search-results').innerHTML).toContain('Pasta');
     });
 
     test('drag and drop functionality', () => {
+        // Create the dragged item first
         const draggedItem = document.createElement('li');
         draggedItem.id = 'recipe-1';
-        
-        const dropEvent = new Event('drop');
-        const dayElement = document.querySelector('.day');
-        dayElement.dispatchEvent(dropEvent);
+        draggedItem.innerHTML = '<img src="pasta.jpg" alt="Pasta"><span>Pasta</span>';
+        document.body.appendChild(draggedItem);
 
-        expect(dayElement.querySelector('ul').children.length).toBe(1);
+        // Create the day element with proper structure
+        const dayElement = document.querySelector('.day');
+        const ulElement = dayElement.querySelector('ul');
+
+        // Create a mock event with proper structure
+        const mockEvent = {
+            preventDefault: () => {},
+            target: {
+                closest: (selector) => {
+                    if (selector === '.day') return dayElement;
+                    return null;
+                }
+            },
+            dataTransfer: {
+                getData: () => 'recipe-1'
+            }
+        };
+
+        // Execute handleDrop with our mock event
+        handleDrop(mockEvent);
+    
+        // Verify the result
+        expect(ulElement.children.length).toBe(1);
+        expect(ulElement.querySelector('li')).not.toBeNull();
+        expect(ulElement.querySelector('li').id).toBe('recipe-1');
     });
 });

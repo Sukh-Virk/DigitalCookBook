@@ -1,50 +1,55 @@
 let apiUrlInfo = "";
 const apiKey = "bc1d8e174ce34f27b702bd643a4d4231";
 
-document.getElementById("ingredientForm").addEventListener("submit", function (e) {
-    e.preventDefault();
+function initializeEventListeners() {
+    if (typeof document !== 'undefined') {
+        const form = document.getElementById("ingredientForm");
+        if (form) {
+            form.addEventListener("submit", function (e) {
+                e.preventDefault();
 
-    const ingredientsInput = document.getElementById("ingredients").value.trim();
-    if (!ingredientsInput) {
-        alert("Please enter some ingredients.");
-        return;
+                const ingredientsInput = document.getElementById("ingredients").value.trim();
+                if (!ingredientsInput) {
+                    alert("Please enter some ingredients.");
+                    return;
+                }
+
+                const loadingSpinner = document.getElementById("loading-spinner");
+                loadingSpinner.classList.remove("hidden");
+
+                const ingredients = ingredientsInput.split(",").map((ing) => ing.trim().toLowerCase());
+                const apiUrl = `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${ingredients.join(
+                    ","
+                )}&number=10&apiKey=${apiKey}`;
+
+                fetch(apiUrl)
+                    .then((response) => {
+                        if (!response.ok) {
+                            return response.json().then((err) => {
+                                console.error("API Error:", err);
+                                throw new Error(err.message || "Failed to fetch recipes.");
+                            });
+                        }
+                        return response.json();
+                    })
+                    .then((data) => {
+                        displayRecipes(data);
+                    })
+                    .catch((error) => {
+                        console.error("Fetch Error:", error);
+                        alert(`An error occurred: ${error.message}`);
+                    })
+                    .finally(() => {
+                        loadingSpinner.classList.add("hidden");
+                    });
+            });
+        }
     }
-
-    // Show the loading spinner
-    const loadingSpinner = document.getElementById("loading-spinner");
-    loadingSpinner.classList.remove("hidden");
-
-    const ingredients = ingredientsInput.split(",").map((ing) => ing.trim().toLowerCase());
-    const apiUrl = `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${ingredients.join(
-        ","
-    )}&number=10&apiKey=${apiKey}`;
-
-    fetch(apiUrl)
-        .then((response) => {
-            if (!response.ok) {
-                return response.json().then((err) => {
-                    console.error("API Error:", err);
-                    throw new Error(err.message || "Failed to fetch recipes.");
-                });
-            }
-            return response.json();
-        })
-        .then((data) => {
-            displayRecipes(data);
-        })
-        .catch((error) => {
-            console.error("Fetch Error:", error);
-            alert(`An error occurred: ${error.message}`);
-        })
-        .finally(() => {
-            // Hide the loading spinner after fetching data
-            loadingSpinner.classList.add("hidden");
-        });
-});
+}
 
 async function displayRecipes(recipes) {
     const resultsDiv = document.getElementById("recipeResults");
-    resultsDiv.innerHTML = ""; // Clear previous results
+    resultsDiv.innerHTML = "";
 
     if (recipes.length === 0) {
         resultsDiv.innerHTML = "<p>No recipes found. Try different ingredients.</p>";
@@ -55,7 +60,7 @@ async function displayRecipes(recipes) {
 
     for (const recipe of recipes) {
         const ingredientList = recipe.usedIngredients
-            .slice(0, 3) // Limit to 3 ingredients
+            .slice(0, 3)
             .map((ing) => ing.name)
             .join(", ");
 
@@ -114,7 +119,7 @@ async function findInfo() {
     } catch (error) {
         console.error("Detail Fetch Error:", error);
         alert(`An error occurred while fetching recipe details: ${error.message}`);
-        return 0.0; // Return 0.0 early if there's an error
+        return 0.0;
     }
 
     let timePoints = Math.min(cookingTime / 12, 4.5);
@@ -132,3 +137,9 @@ async function findInfo() {
     return difficulty;
 }
 
+// Add exports and initialization
+module.exports = { displayRecipes, findInfo, initializeEventListeners };
+
+if (typeof document !== 'undefined') {
+    initializeEventListeners();
+}

@@ -1,24 +1,12 @@
-// Import the functions and variables from calculator.js
-const fs = require('fs');
-const path = require('path');
-const calculatorJs = fs.readFileSync(path.resolve(__dirname, '../calculator.js'), 'utf8');
-
-// Create a script element and inject calculator.js content
-const script = document.createElement('script');
-script.textContent = calculatorJs;
-document.body.appendChild(script);
-
-// Mock fetch globally
-global.fetch = jest.fn();
+const { calculateNutrition, addIngredient, removeIngredient, ingredients, displayResults } = require('../calculator.js');
 
 describe('Nutrition Calculator Tests', () => {
     beforeEach(() => {
-        // Reset DOM with the full structure needed
         document.body.innerHTML = `
             <div class="calculator-container">
                 <div class="search-section">
                     <input type="text" id="ingredientInput" />
-                    <button onclick="addIngredient()">Add Ingredient</button>
+                    <button id="addButton">Add Ingredient</button>
                 </div>
                 <div class="ingredients-list">
                     <ul id="ingredientsList"></ul>
@@ -26,10 +14,9 @@ describe('Nutrition Calculator Tests', () => {
                 <div class="results-section" id="nutritionResults"></div>
             </div>
         `;
-        // Reset ingredients array
-        window.ingredients = [];
-        // Clear fetch mock
-        fetch.mockClear();
+        // Reset ingredients array before each test
+        ingredients.length = 0;
+        global.fetch = jest.fn();
     });
 
     test('addIngredient should add ingredient to list', () => {
@@ -44,7 +31,7 @@ describe('Nutrition Calculator Tests', () => {
     });
 
     test('removeIngredient should remove ingredient from list', () => {
-        ingredients = ['100g chicken', '1 cup rice'];
+        ingredients.push('100g chicken', '1 cup rice');
         
         removeIngredient(0);
         
@@ -53,7 +40,7 @@ describe('Nutrition Calculator Tests', () => {
     });
 
     test('calculateNutrition should handle API success', async () => {
-        ingredients = ['100g chicken'];
+        ingredients.push('100g chicken');
         const mockResponse = {
             calories: 165,
             totalNutrients: {
@@ -83,7 +70,7 @@ describe('Nutrition Calculator Tests', () => {
     });
 
     test('calculateNutrition should handle API error', async () => {
-        ingredients = ['invalid ingredient'];
+        ingredients.push('invalid ingredient');
 
         fetch.mockImplementationOnce(() => 
             Promise.resolve({
