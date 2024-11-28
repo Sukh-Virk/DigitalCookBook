@@ -262,6 +262,8 @@ hr {
 
 /* Recipe link */
 .recipeLink {
+  max-width: 90%;
+  width: 180px;
   display: inline-block;
   font-size: 20px;
   background-color: #228B22;
