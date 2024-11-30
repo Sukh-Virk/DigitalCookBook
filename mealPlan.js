@@ -126,8 +126,8 @@ function searchMeals(event) {
   // Show spinner during search
   showSpinner();
 
-  const apiUrl = `https://api.spoonacular.com/recipes/complexSearch?query=${query}&number=5&addRecipeInformation=true&apiKey=${apiKey}`;
-
+  // const apiUrl = `https://api.spoonacular.com/recipes/complexSearch?query=${query}&number=5&addRecipeInformation=true&apiKey=${apiKey}`;
+  const apiUrl = `https://api.spoonacular.com/recipes/complexSearch?query=${query}&number=5&addRecipeInformation=true&addRecipeNutrition=true&apiKey=${apiKey}`;
   fetch(apiUrl)
     .then((response) => {
       if (!response.ok) throw new Error("API request failed");
@@ -157,10 +157,37 @@ function searchMeals(event) {
           const prepTime = document.createElement("p");
           prepTime.textContent = `Prep Time: ${recipe.readyInMinutes || "N/A"} mins`;
 
+          let caloriesValue = "N/A";
+        if (recipe.nutrition && recipe.nutrition.nutrients) {
+          const caloriesInfo = recipe.nutrition.nutrients.find(
+            (nutrient) => nutrient.name === "Calories"
+          );
+          if (caloriesInfo) {
+            caloriesValue = `${caloriesInfo.amount} ${caloriesInfo.unit}`;
+          }
+        }
+
+        const calories = document.createElement("p");
+        calories.textContent = `Calories: ${caloriesValue}`;
+
+        let proteinValue = "N/A";
+        if (recipe.nutrition && recipe.nutrition.nutrients) {
+          const proteinInfo = recipe.nutrition.nutrients.find(
+            (nutrient) => nutrient.name === "Protein"
+          );
+          if (proteinInfo) {
+            proteinValue = `${proteinInfo.amount} ${proteinInfo.unit}`;
+          }
+        }
+        const protein = document.createElement("p");
+        protein.textContent = `Protein: ${proteinValue}`;
+        
           listItem.appendChild(image);
           listItem.appendChild(title);
           listItem.appendChild(servings);
           listItem.appendChild(prepTime);
+          listItem.appendChild(calories);
+          listItem.appendChild(protein);
           resultsList.appendChild(listItem);
         });
       } else {
