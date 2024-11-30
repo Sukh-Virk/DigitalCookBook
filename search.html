@@ -5,7 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Digital Cookbook</title>
-  <link rel="stylesheet" href="styles2.css">
+  <link rel="stylesheet" href="search.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 
@@ -19,100 +20,132 @@
 
 
   <!-- Header and Navigation -->
-  <header class="main-header">
-    <div class="logo">Digital Cookbook</div>
+  <header class="header">
+    <a href="#home" class="logo">
+        <h7>Digital Cookbook</h7>
+    </a>
     <nav>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="index.html#features">Features</a></li>
-        <li><a href="index.html#contact">Contact</a></li>
-      </ul>
+        <ul class="navigation">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#features">Features</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
     </nav>
-  </header>
+</header>
 
-  <!-- Search Section -->
-  <section id="search" class="section">
-    <h2>Search</h2>
-    <p>Use the search feature to find recipes by ingredients, cooking time, and difficulty level.</p>
-    <form id="search-form">
-      <label for="ingredients">Ingredients:</label>
-      <input type="text" id="ingredients" name="ingredients" placeholder="e.g., chicken, broccoli">
-      
-      <label for="cooking-time">Max Cooking Time (minutes):</label>
-      <input type="number" id="cooking-time" name="cooking-time" min="1" placeholder="e.g., 30">
-      
-      <label for="difficulty">Difficulty:</label>
-      <select id="difficulty" name="difficulty">
-        <option value="any">Any</option>
-        <option value="easy">Easy</option>
-        <option value="medium">Medium</option>
-        <option value="hard">Hard</option>
-      </select>
-      
-      <button type="submit">Search Recipes</button>
-    </form>
+<!-- Search Section -->
+<section id="search" class="section">
+  <h2>Search</h2>
+  <p>Use the search feature to find recipes by ingredients, cooking time, and difficulty level.</p>
+  <form id="search-form">
+    <label for="ingredients">Ingredients:</label>
+    <input type="text" id="ingredients" name="ingredients" placeholder="e.g., chicken, broccoli">
+    
+    <label for="cooking-time">Max Cooking Time (minutes):</label>
+    <input type="number" id="cooking-time" name="cooking-time" min="1" placeholder="e.g., 30">
+    
+    <label for="difficulty">Difficulty:</label>
+    <select id="difficulty" name="difficulty">
+      <option value="any">Any</option>
+      <option value="easy">Easy</option>
+      <option value="medium">Medium</option>
+      <option value="hard">Hard</option>
+    </select>
+    
+    <button type="submit">Search Recipes</button>
+  </form>
 
-    <!-- Results Section -->
-    <div id="search-results" class="recipe-cards"></div>
-  </section>
+  <!-- Loading Spinner -->
+  <div id="loading-spinner" class="loading-spinner hidden">
+    <i class="fas fa-spinner fa-spin"></i>
+    <p>Loading...</p>
+  </div>
+
+  <!-- Results Section -->
+  <div id="search-results" class="recipe-cards"></div>
+</section>
+
 
   <footer>
-    <p>&copy; 2024 Digital Cookbook. All Rights Reserved.</p>
+    <h7>&copy; 2024 Digital Cookbook. All Rights Reserved.</h7>
   </footer>
 
+
+
   <script>
-    const app_id = '732ca99a';  // Replace with your Edamam App ID
-    const app_key = '021450b847979a873bd44929c9d581ed';  // Replace with your Edamam App Key
+    const app_id = '732ca99a'; // Replace with your Edamam App ID
+const app_key = '021450b847979a873bd44929c9d581ed'; // Replace with your Edamam App Key
 
-    document.getElementById('search-form').addEventListener('submit', function(event) {
-      event.preventDefault();
-      
-      const ingredients = document.getElementById('ingredients').value;
-      const maxTime = document.getElementById('cooking-time').value;
-      const difficulty = document.getElementById('difficulty').value;
+document.getElementById('search-form').addEventListener('submit', function(event) {
+  event.preventDefault();
 
-      // Set time limits based on difficulty level
-      let difficultyTimeLimit;
-      if (difficulty === 'easy') {
-        difficultyTimeLimit = 30;  // Recipes with a max cooking time of 30 mins
-      } else if (difficulty === 'medium') {
-        difficultyTimeLimit = 60;  // Recipes with a max cooking time of 60 mins
-      } else if (difficulty === 'hard') {
-        difficultyTimeLimit = 120; // Recipes with a max cooking time of 120 mins
+  const ingredients = document.getElementById('ingredients').value;
+  const maxTime = document.getElementById('cooking-time').value;
+  const difficulty = document.getElementById('difficulty').value;
+  const loadingSpinner = document.getElementById('loading-spinner');
+  const resultsContainer = document.getElementById('search-results');
+
+  // Clear previous results
+  resultsContainer.innerHTML = '';
+
+  // Show the loading spinner
+  loadingSpinner.classList.remove('hidden');
+
+  // Set time limits based on difficulty level
+  let difficultyTimeLimit;
+  if (difficulty === 'easy') {
+    difficultyTimeLimit = 30; // Recipes with a max cooking time of 30 mins
+  } else if (difficulty === 'medium') {
+    difficultyTimeLimit = 60; // Recipes with a max cooking time of 60 mins
+  } else if (difficulty === 'hard') {
+    difficultyTimeLimit = 120; // Recipes with a max cooking time of 120 mins
+  }
+
+  // Adjust max cooking time according to selected difficulty
+  const cookingTime = difficulty !== 'any' ? difficultyTimeLimit : maxTime;
+
+  // Build Edamam API URL with query parameters
+  const url = `https://api.edamam.com/search?q=${ingredients}&app_id=${app_id}&app_key=${app_key}&time=1-${cookingTime}&from=0&to=10`;
+
+  fetch(url)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
       }
-
-      // Adjust max cooking time according to selected difficulty
-      const cookingTime = difficulty !== 'any' ? difficultyTimeLimit : maxTime;
-
-      // Build Edamam API URL with query parameters
-      let url = `https://api.edamam.com/search?q=${ingredients}&app_id=${app_id}&app_key=${app_key}&time=1-${cookingTime}&from=0&to=10`;
-
-      fetch(url)
-        .then(response => response.json())
-        .then(data => displayRecipes(data.hits))
-        .catch(error => console.error('Error fetching recipes:', error));
+      return response.json();
+    })
+    .then(data => displayRecipes(data.hits))
+    .catch(error => {
+      console.error('Error fetching recipes:', error);
+      resultsContainer.innerHTML = '<p>Error fetching recipes. Please try again.</p>';
+    })
+    .finally(() => {
+      // Hide the loading spinner
+      loadingSpinner.classList.add('hidden');
     });
+});
 
-    function displayRecipes(recipes) {
-      const resultsContainer = document.getElementById('search-results');
-      resultsContainer.innerHTML = '';  // Clear previous results
+function displayRecipes(recipes) {
+  const resultsContainer = document.getElementById('search-results');
+  resultsContainer.innerHTML = ''; // Clear previous results
 
-      recipes.forEach(recipeData => {
-        const recipe = recipeData.recipe;
-        const recipeCard = document.createElement('div');
-        recipeCard.classList.add('recipe-card');
-        
-        recipeCard.innerHTML = `
-          <img src="${recipe.image}" alt="${recipe.label}">
-          <h4>${recipe.label}</h4>
-          <p>Calories: ${Math.round(recipe.calories)}</p>
-          <p>Time: ${recipe.totalTime ? recipe.totalTime + ' mins' : 'N/A'}</p>
-          <a href="${recipe.url}" target="_blank" class="btn">View Recipe</a>
-        `;
-        
-        resultsContainer.appendChild(recipeCard);
-      });
-    }
+  recipes.forEach(recipeData => {
+    const recipe = recipeData.recipe;
+    const recipeCard = document.createElement('div');
+    recipeCard.classList.add('recipe-card');
+
+    recipeCard.innerHTML = `
+      <img src="${recipe.image}" alt="${recipe.label}">
+      <h4>${recipe.label}</h4>
+      <p>Calories: ${Math.round(recipe.calories)}</p>
+      <p>Time: ${recipe.totalTime ? recipe.totalTime + ' mins' : 'N/A'}</p>
+      <a href="${recipe.url}" target="_blank" class="btn">View Recipe</a>
+    `;
+
+    resultsContainer.appendChild(recipeCard);
+  });
+}
+
   </script>
 </body>
 </html>

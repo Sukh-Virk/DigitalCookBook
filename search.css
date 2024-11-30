@@ -1,0 +1,282 @@
+/* Header Section */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+/* General Body and Layout Styles */
+body {
+  font-family: 'Poppins', sans-serif;
+  background: white;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+
+
+header {
+  display: flex;
+  justify-content: space-between; /* Space navigation and heading */
+  align-items: center; /* Center items vertically */
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  position: relative;
+}
+
+header h1 {
+  flex: 1; /* Allows the heading to center dynamically */
+  text-align: center; /* Center-align heading text */
+  font-size: 2.5rem; /* Larger font size for the heading */
+  font-family: 'Poppins', sans-serif; /* Font-family for the heading */
+  margin: 0;
+}
+
+/* Navigation Styling */
+nav {
+  flex-shrink: 0; /* Prevents the navigation from shrinking */
+}
+
+
+
+.header .logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+
+.header .logo :hover {
+  color: #ffeb3b;
+}
+
+.navigation {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 20px; /* Adds space between navigation links */
+}
+
+.navigation li {
+  display: inline;
+}
+
+.navigation a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+}
+
+.navigation a:hover {
+  color: #ffeb3b;
+}
+
+/* Section Styling */
+.section {
+  padding: 20px;
+  max-width: 800px;
+  margin: 20px auto;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+  color: #4CAF50;
+}
+
+form label {
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: bold;
+}
+
+input, select, button {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 4px;
+}
+
+button {
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+
+.recipe-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.recipe-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 200px;
+  text-align: center;
+  padding: 15px;
+}
+
+.recipe-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.result {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #f1f1f1;
+  border-radius: 4px;
+}
+
+.hidden {
+  display: none;
+}
+
+
+footer {
+  background-color: #4CAF50;
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+}
+
+/* Bubble Styles */
+.bubble {
+  position: absolute;
+  background-color: rgba(76, 175, 80, 0.1); /* Light green bubble */
+  border-radius: 50%;
+  z-index: -1;
+  animation: float 20s infinite ease-in-out;
+}
+
+.bubble:nth-child(1) {
+  width: 120px;
+  height: 120px;
+  top: 10%;
+  left: 5%;
+  animation-duration: 22s;
+}
+
+.bubble:nth-child(2) {
+  width: 150px;
+  height: 150px;
+  top: 25%;
+  left: 70%;
+  animation-duration: 28s;
+}
+
+.bubble:nth-child(3) {
+  width: 100px;
+  height: 100px;
+  top: 50%;
+  left: 20%;
+  animation-duration: 25s;
+}
+
+.bubble:nth-child(4) {
+  width: 200px;
+  height: 200px;
+  bottom: 15%;
+  right: 15%;
+  animation-duration: 35s;
+}
+
+.bubble:nth-child(5) {
+  width: 80px;
+  height: 80px;
+  bottom: 20%;
+  left: 10%;
+  animation-duration: 30s;
+}
+
+/* Animation for bubbles */
+@keyframes float {
+  0% {
+      transform: translateY(0px);
+  }
+  50% {
+      transform: translateY(-20px);
+  }
+  100% {
+      transform: translateY(0px);
+  }
+}
+  
+.moving-search-icon {
+  position: fixed; /* Ensures the icon stays in place when scrolling */
+  bottom: 400px; /* Move it up by decreasing this value */
+  left: 20px; /* Keep it aligned on the left */
+  width: 50px; /* Set consistent width */
+  height: 50px; /* Set consistent height */
+  background-color: white; /* Add background for visibility */
+  border-radius: 50%; /* Make it circular */
+  display: flex; /* Center the icon */
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow */
+  z-index: 10; /* Ensure it's above other elements */
+}
+
+/* Optional Bounce Animation for Icon */
+.moving-search-icon i {
+  color: green;
+  font-size: 24px;
+  animation: bounce 2s infinite; /* Bouncing animation */
+}
+
+@keyframes bounce {
+  0%, 100% {
+      transform: translateY(0);
+  }
+  50% {
+      transform: translateY(-10px);
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #43a047; /* Green */
+  font-weight: bold; /* Optional */
+}
+
+
+
+/* Make all labels green */
+label {
+  color: #43a047; /* Green */
+  font-weight: bold; /* Optional for emphasis */
+}
+
+/* Loading Spinner Styles */
+.loading-spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  color: #43a047; /* Green color */
+  font-size: 18px;
+}
+
+.loading-spinner i {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.hidden {
+  display: none;
+}
