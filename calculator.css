@@ -1,50 +1,59 @@
-/* General Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+/* General Body and Layout Styles */
 body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    position: relative;
-    background: white;
-    overflow-x: hidden;
+  font-family: 'Poppins', sans-serif;
+  background: white;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
 }
 
-/* Header Styles */
 .header {
     display: flex;
-    justify-content: space-between; /* Align logo to the left, navigation to the right */
+    justify-content: space-between;
     align-items: center;
-    background: linear-gradient(90deg, #43a047, #66bb6a); /* Green gradient */
-    padding: 15px 20px;
+    background: linear-gradient(90deg, #43a047, #66bb6a);
     color: white;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    border-radius: 0 0 10px 10px; /* Rounded bottom corners */
+    padding: 10px 20px;
 }
 
-.header .logo {
-    font-size: 1.5em;
+/* Logo Styling */
+.logo {
+    font-size: 1.8em;
     font-weight: bold;
 }
 
+.logo a {
+    text-decoration: none; /* Remove underline */
+    color: white;
+    transition: color 0.3s;
+}
+
+/* Hover Effect for Logo */
+.logo a:hover {
+    color: yellow; /* Turns yellow on hover */
+}
+
+/* Navigation Styling */
 .navigation {
     list-style: none;
     display: flex;
-    justify-content: center;
-    gap: 1em;
-    margin-top: 0.5em;
+    gap: 20px; /* Space between links */
+    margin: 0;
 }
 
 .navigation li a {
-    color: white;
     text-decoration: none;
+    color: white;
     font-weight: bold;
     transition: color 0.3s;
 }
 
+/* Hover Effect for Navigation Links */
 .navigation li a:hover {
     color: yellow;
 }
@@ -53,7 +62,6 @@ body {
 .calculator-container {
     padding: 2em;
     text-align: center;
-    color: #43a047;
 }
 
 .search-section {
@@ -231,4 +239,61 @@ body::before, body::after {
     100% {
         transform: translateY(0px);
     }
+}
+
+/* Bouncing Calculator Icon */
+.bouncing-icon {
+    animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Loading Spinner */
+.loading-spinner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1em;
+    gap: 10px;
+    color: green;
+}
+
+.spinning-icon {
+    font-size: 24px;
+    animation: spin 1s linear infinite;
+}
+
+.hidden {
+    display: none;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+/* General Green Text Styling */
+h1, h2, h3, p {
+    color: #43a047; /* A shade of green */
+    font-weight: bold; /* Bold text */
+}
+
+h4{
+    color:white
+}
+
+#ingredientsList li {
+    color: #43a047; /* Green */
+    font-weight: bold; /* Bold text */
+    font-size: 1em; /* Adjust font size if needed */
 }
