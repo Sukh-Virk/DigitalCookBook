@@ -1,4 +1,5 @@
-/* Header Section */
+
+/* Navigation Styling *//* Header Section */
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
@@ -12,6 +13,9 @@ body {
   scroll-behavior: smooth;
 }
 
+html {
+  scroll-behavior: smooth;
+}
 
 header {
   display: flex;
@@ -345,4 +349,35 @@ p
 }
 h5{
   color: white;
+}
+/* Loading Spinner */
+.loading-spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.loading-spinner.hidden {
+  display: none;
+}
+
+.loading-spinner i {
+  font-size: 2rem;
+  color: #4CAF50;
+}
+
+.loading-spinner p {
+  margin-top: 10px;
+  font-size: 1rem;
+  color: #2f4f4f;
 }
