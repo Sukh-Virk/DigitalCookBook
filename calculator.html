@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nutrition Calculator - Digital Cookbook</title>
     <link rel="stylesheet" href="calculator.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
   <div class="bubble-container">
@@ -13,19 +14,22 @@
     <div class="bubble"></div>
     <div class="bubble"></div>
     <div class="bubble"></div>
+    
     <header class="header">
-        <div class="logo">Digital Cookbook</div>
-        <nav>
-            <ul class="navigation">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="index.html#features">Features</a></li>
-                <li><a href="index.html#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+      <div class="logo">
+          <a href="index.html" class="homepage-link">Digital Cookbook</a>
+      </div>
+      <nav>
+          <ul class="navigation">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="index.html#features">Features</a></li>
+              <li><a href="index.html#contact">Contact</a></li>
+          </ul>
+      </nav>
+  </header>
 
     <main class="calculator-container">
-        <h1>Nutrition Calculator</h1>
+        <h1>Nutrition Calculator <i class="fas fa-calculator bouncing-icon"></i></h1>
         
         <div class="search-section">
             <input type="text" id="ingredientInput" placeholder="Enter an ingredient with the amount, e.g., '1 cup rice' or '100g bacon'">
@@ -35,7 +39,15 @@
         <div class="ingredients-list">
             <h2>Ingredients List:</h2>
             <ul id="ingredientsList"></ul>
-            <button onclick="calculateNutrition()" class="calculate-btn">Calculate Nutrition</button>
+            <button onclick="calculateNutrition()" class="calculate-btn">
+                Calculate Nutrition <i class="fas fa-calculator bouncing-icon"></i>
+            </button>
+        </div>
+
+        <!-- Loading Spinner -->
+        <div id="loadingSpinner" class="loading-spinner hidden">
+            <i class="fas fa-spinner spinning-icon"></i>
+            <p>Loading...</p>
         </div>
 
         <div class="results-section" id="nutritionResults"></div>
@@ -66,10 +78,9 @@
     </section>
 
     <footer class="footer">
-        <p>&copy; 2024 Digital Cookbook. All Rights Reserved.</p>
+        <h4>&copy; 2024 Digital Cookbook. All Rights Reserved.<h4>
     </footer>
 
     <script src="calculator.js"></script>
 </body>
 </html>
-
