@@ -1,61 +1,78 @@
-/* General Styles */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
-    color: #2f4f4f;
-    margin: 0;
-    padding: 0;
-  }
-  
-  /* Header Section */
 
-  
-  header {
-    display: flex;
-    justify-content: space-between; /* Space navigation and heading */
-    align-items: center; /* Center items vertically */
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    position: relative;
-  }
-  
-  header h1 {
-    flex: 1; /* Allows the heading to center dynamically */
-    text-align: center; /* Center-align heading text */
-    font-size: 2.5rem; /* Larger font size for the heading */
-    font-family: 'Poppins', sans-serif; /* Font-family for the heading */
-    margin: 0;
-  }
-  
-  /* Navigation Styling */
-  nav {
-    flex-shrink: 0; /* Prevents the navigation from shrinking */
-  }
-  
-  .navigation {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    gap: 20px; /* Adds space between navigation links */
-  }
-  
-  .navigation li {
-    display: inline;
-  }
-  
-  .navigation a {
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
-    font-size: 1.1rem;
-    transition: color 0.3s ease;
-  }
-  
-  .navigation a:hover {
-    color: #ffeb3b;
-  }
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+/* General Body and Layout Styles */
+body {
+  font-family: 'Poppins', sans-serif;
+  background: white;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+
+
+header {
+  display: flex;
+  justify-content: space-between; /* Space navigation and heading */
+  align-items: center; /* Center items vertically */
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  position: relative;
+}
+
+header h1 {
+  flex: 1; /* Allows the heading to center dynamically */
+  text-align: center; /* Center-align heading text */
+  font-size: 2.5rem; /* Larger font size for the heading */
+  font-family: 'Poppins', sans-serif; /* Font-family for the heading */
+  margin: 0;
+}
+
+/* Navigation Styling */
+nav {
+  flex-shrink: 0; /* Prevents the navigation from shrinking */
+}
+
+
+
+.header .logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+
+.header .logo :hover {
+  color: #ffeb3b;
+}
+
+.navigation {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 20px; /* Adds space between navigation links */
+}
+
+.navigation li {
+  display: inline;
+}
+
+.navigation a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+}
+
+.navigation a:hover {
+  color: #ffeb3b;
+}
+
   
   /* Section Bubble Effect */
   #meal-search::before,
@@ -230,8 +247,6 @@ body {
   .save-btn,
   .remove-btn {
     background: #228b22;
-    display: flex;
-    align-items: center;
     color: white;
     padding: 0.5rem 1rem;
     border-radius: 10px;
