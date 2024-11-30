@@ -49,7 +49,7 @@ body {
 }
 
 
-.estimator-container {
+.chatBox-container {
     max-width: 600px;
     margin: 40px auto;
     padding: 20px;
@@ -59,14 +59,98 @@ body {
     text-align: center;
 }
 
-.estimator-container h1 {
+a { 
+    color: inherit; 
+    text-decoration:none;
+}
+
+h1 {
     color: #4CAF50;
     margin-bottom: 10px;
 }
 
-.estimator-container p {
-    color: #666;
-    margin-bottom: 20px;
+.chatBoxLabel{
+    color: #4CAF50;
+    margin-bottom: 5px;
+}
+
+.inputBox{
+  width: 90%; /* Makes it responsive */
+  height: 150px; /* Adjust as needed */
+  padding: 10px;
+  border: 2px solid #4CAF50; /* Green border */
+  border-radius: 5px; /* Rounded corners */
+  background-color: #ffffff; /* White background */
+  color: #333333; /* Dark gray text for readability */
+  font-family: Arial, sans-serif; /* Clean, standard font */
+  font-size: 16px; /* Adjust text size */
+  resize: vertical; /* Allows vertical resizing */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  outline: none; /* Removes blue outline on focus */
+}
+
+.inputBox:focus {
+  border-color: #81c784; /* Lighter green on focus */
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5); /* Glowing effect */
+}
+
+.resultDiv{
+    background-color: #f3f8f5;
+    color:#218838;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+    margin: 20px;
+    transition: transform 0.3s ease;
+}
+.resultDivTemp{
+    display:flex; /* Flexbox layout */
+    align-items: left;
+    flex-direction: row;
+    background-color: #cbdad1;
+    border-radius: 10px;
+    font-size: 16px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+    margin: 20px;
+    transition: transform 0.3s ease;
+}
+.responceText {
+    font-size: 24px;
+    color: #4CAF50; /* Light Green */
+    padding: 15px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.linkDiv{
+  display: inline-block;
+  font-size: 14px;
+  background-color: #228B22;
+  color: #fcfcfc; /* Light Green */
+  text-decoration: none;
+  font-weight: bold;
+  padding: 5px 10px;
+  border: 2px solid #228B22;
+  border-radius: 5px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  margin-left: 5%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  height: fit-content;
+}
+
+.titleDiv{
+  width: 60%;
+
+  text-align: left;
+  font-size: 18px;
+  color:  #228B22;
+  margin-left: 2%;
+  margin-top: 2%;
+  margin-bottom: 2%;
 }
 
 form label {
@@ -84,16 +168,22 @@ input, select {
     font-size: 16px;
 }
 
-.estimate-btn {
-    background-color: #4CAF50;
+.input-form .btn {
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    font-weight: bold;
     color: white;
+    background: linear-gradient(90deg, #28a745, #218838);
     border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
+    border-radius: 10px;
     cursor: pointer;
-    font-size: 16px;
-    width: 100%;
-}
+    transition: background 0.3s, transform 0.3s;
+  }
+  
+  .input-form .btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
 
 .estimate-btn:hover {
     background-color: #388E3C;
@@ -112,73 +202,12 @@ input, select {
 }
 
 
-.examples-section {
-    max-width: 800px;
-    margin: 40px auto;
-    padding: 20px;
-    text-align: center;
-}
-
-.examples-section h2 {
-    color: #4CAF50;
-    margin-bottom: 20px;
-}
-
-.examples-container {
-    display: flex;
-    justify-content: space-around;
-    gap: 20px;
-    flex-wrap: wrap;
-}
-
-.example-card {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 15px;
-    width: 220px;
-    text-align: center;
-}
-.example-card-Selected {
-    background-color:  #4CAF50;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 15px;
-    width: 220px;
-    text-align: center;
-}
-.example-card-Selected h3 {
-    color: #ffffff;
-    font-size: 18px;
-    margin-bottom: 10px;
-}
-
-.example-card h3 {
-    color: #4CAF50;
-    font-size: 18px;
-    margin-bottom: 10px;
-}
-
-.example-card p {
-    font-size: 16px;
-    color: #666;
-}
-
-
 .footer {
     background-color: #4CAF50;
     color: #fff;
     text-align: center;
     padding: 10px 0;
     margin-top: 40px;
-}
-
-
-/* Ramtin Css */
-
-.recipeInput1 {
-    width: 100%;
-    height: 150px;
 }
 
 /* Bubble Styles */

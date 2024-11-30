@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Box - Digital Cookbook</title>
+    <link rel="stylesheet" href="styles3.css">
+</head>
+
+<body>
+    <div class="bubble-container">
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+    </div>
+
+    <header class="header">
+        <div class="logo">Digital Cookbook</div>
+        <nav>
+            <ul class="navigation">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="theMainTag" class="chatBox-container">
+        <h1>Chat box</h1>
+
+        <form id="input-form" class = "input-form">
+            <label class ="chatBoxLabel">Type your request:</label>
+            <textarea id="inputBox" name="inputBox" class="inputBox"> </textarea>
+
+            <div class="button-container">
+                <button type="submit" class="btn">Answer</button>
+                <div id="loading-spinner" class="spinner hidden">
+                <i class="fas fa-spinner fa-spin spinner-icon"></i>
+            </div>
+        </form>
+        <div id="result" class="resultDiv">
+        </div>
+    </main>
+
+
+    <footer class="footer">
+        <p>&copy; 2024 Digital Cookbook. All Rights Reserved.</p>
+    </footer>
+
+    <script src="chatBox.js"></script>
+</body>
+
+</html>
