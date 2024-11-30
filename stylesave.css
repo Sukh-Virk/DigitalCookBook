@@ -111,14 +111,10 @@ nav {
   
   /* Footer Section */
   footer {
-    background-color: #228b22;
-    color: white;
+    background-color: #4CAF50;
+    color: #fff;
     text-align: center;
-    padding: 1.5rem;
-    margin-top: 2rem;
-    border-radius: 20px 20px 0 0;
-    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
-    position: relative; /* Required for bubble effect */
+    padding: 10px 0;
   }
   
   /* Footer Bubble Effect */
