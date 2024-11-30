@@ -97,15 +97,34 @@ function loadMealPlan() {
   }
 }
 
+// Show spinner
+function showSpinner() {
+  const spinner = document.getElementById("loading-spinner");
+  if (spinner) {
+    spinner.classList.remove("hidden");
+  }
+}
+
+// Hide spinner
+function hideSpinner() {
+  const spinner = document.getElementById("loading-spinner");
+  if (spinner) {
+    spinner.classList.add("hidden");
+  }
+}
+
 // Search for meals and display them in the results section
-function searchMeals(e) {
-  e.preventDefault();
+function searchMeals(event) {
+  event.preventDefault();
 
   const query = document.getElementById("meal-search")?.value.trim();
   if (!query) return;
 
   const resultsList = document.getElementById("search-results");
-  resultsList.innerHTML = "<li>Loading...</li>";
+  resultsList.innerHTML = "";
+
+  // Show spinner during search
+  showSpinner();
 
   const apiUrl = `https://api.spoonacular.com/recipes/complexSearch?query=${query}&number=5&addRecipeInformation=true&apiKey=${apiKey}`;
 
@@ -115,6 +134,7 @@ function searchMeals(e) {
       return response.json();
     })
     .then((data) => {
+      hideSpinner(); // Hide spinner after results load
       resultsList.innerHTML = "";
 
       if (data.results && data.results.length > 0) {
@@ -148,13 +168,65 @@ function searchMeals(e) {
       }
     })
     .catch((error) => {
+      hideSpinner(); // Hide spinner on error
       resultsList.innerHTML = "<li>Error fetching recipes. Please try again.</li>";
       console.error("Error fetching recipes:", error);
     });
 }
 
-// Initialize drag-and-drop and other event listeners
-function initializeMealPlanEvents() {
+// Auto-scroll functionality
+let isDragging = false;
+let scrollDirection = null;
+
+function setupAutoScroll() {
+  const scrollSpeed = 15; // Speed of scrolling
+  const scrollInterval = 16; // Interval for smooth scrolling (~60fps)
+
+  function startScrolling(direction) {
+    if (scrollDirection !== direction) {
+      stopScrolling(); // Stop any ongoing scrolling
+      scrollDirection = direction;
+      isDragging = true;
+
+      const scrollStep = direction === "up" ? -scrollSpeed : scrollSpeed;
+      const autoScroll = () => {
+        if (isDragging && scrollDirection) {
+          window.scrollBy(0, scrollStep);
+          requestAnimationFrame(autoScroll); // Use requestAnimationFrame for smoother scrolling
+        }
+      };
+      autoScroll();
+    }
+  }
+
+  function stopScrolling() {
+    isDragging = false;
+    scrollDirection = null;
+  }
+
+  // Detect dragover near top or bottom of the viewport
+  document.addEventListener("dragover", (event) => {
+    const { clientY } = event;
+    const scrollZoneSize = 100; // Pixels from edge to trigger scrolling
+    if (clientY < scrollZoneSize) {
+      startScrolling("up");
+    } else if (clientY > window.innerHeight - scrollZoneSize) {
+      startScrolling("down");
+    } else {
+      stopScrolling();
+    }
+  });
+
+  document.addEventListener("dragleave", stopScrolling); // Stop scrolling when leaving the viewport
+  document.addEventListener("drop", stopScrolling); // Stop scrolling on drop
+}
+
+// Initialize all event listeners on page load
+document.addEventListener("DOMContentLoaded", () => {
+  setupAutoScroll(); // Set up auto-scroll functionality
+  loadMealPlan(); // Load the saved plan on page load
+
+  // Set up drag-and-drop events
   document.querySelectorAll(".day").forEach((day) => {
     day.addEventListener("dragover", allowDrop);
     day.addEventListener("drop", handleDrop);
@@ -165,13 +237,5 @@ function initializeMealPlanEvents() {
 
   const savePlanButton = document.getElementById("save-plan");
   savePlanButton.addEventListener("click", saveMealPlan);
+});
 
-  loadMealPlan(); // Load saved plan on page load
-}
-
-// Load events on page load
-if (typeof document !== "undefined") {
-  document.addEventListener("DOMContentLoaded", () => {
-    initializeMealPlanEvents();
-  });
-}
