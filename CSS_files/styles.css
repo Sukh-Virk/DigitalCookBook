@@ -68,7 +68,7 @@ body {
 
 /* Hero Section Styling */
 .hero {
-  background-image: url('./images/salad-2756467_1280.jpg'); /* Replace with your image path */
+  background-image: url('../images/salad-2756467_1280.jpg'); /* Replace with your image path */
   background-size: cover;
   background-position: center;
   padding: 200px 30px;
