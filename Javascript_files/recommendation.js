@@ -2,7 +2,7 @@
 let apiUrlInfo = "";
 
 // API key for accessing the Spoonacular API
-const apiKey = "bc1d8e174ce34f27b702bd643a4d4231";
+const apiKey = "1d3658f299d5432c910aad2df2ca8f71";
 
 /**
  * Initializes event listeners on the web page.
