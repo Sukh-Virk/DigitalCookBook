@@ -3,11 +3,15 @@ const apiKey = "501bf7b308cb4c2f94610872514d6993";
 document.getElementById("input-form").addEventListener("submit", function (e) {
     e.preventDefault();
 
-    const userInput = document.getElementById("inputBox").value.trim();
+    const userInputWidget = document.getElementById("inputBox")
+    const userInput = userInputWidget.value.trim();
     if (!userInput) {
         alert("Please enter some ingredients.");
         return;
     }
+
+    // Remove the text in the inputBox
+    userInputWidget.value = "";
 
     // Show the loading spinner
     const loadingSpinner = document.getElementById("loading-spinner");

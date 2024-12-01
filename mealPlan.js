@@ -16,13 +16,22 @@ function handleDrop(event) {
   const data = event.dataTransfer.getData("text");
   const draggedItem = document.getElementById(data);
 
+  
+
   if (draggedItem) {
     const targetDay = event.target.closest(".day");
     if (targetDay) {
       const targetUl = targetDay.querySelector("ul");
+      const calWidget = targetDay.querySelector("h5");
 
       // Check if item already exists in planner to avoid duplicates
       if (!Array.from(targetUl.children).some((item) => item.id === draggedItem.id)) {
+
+        tempNewCal = draggedItem.querySelector("#calorie").textContent.split(' ');
+        tempOldCal = calWidget.innerHTML.split(' ');
+
+        let newCal = parseInt(tempOldCal[1])+parseInt(tempNewCal[1]);
+        console.log(newCal);
         // Create a compact item showing only the name and a remove button
         const compactItem = document.createElement("li");
         compactItem.id = draggedItem.id;
@@ -35,12 +44,17 @@ function handleDrop(event) {
         removeBtn.textContent = "Remove";
         removeBtn.classList.add("remove-btn");
         removeBtn.addEventListener("click", () => {
+          tempNewCal = draggedItem.querySelector("#calorie").textContent.split(' ');
+          tempOldCal = calWidget.innerHTML.split(' ');
+          let newCal = parseInt(tempOldCal[1])-parseInt(tempNewCal[1]);
+          calWidget.innerHTML = `Calories: ${newCal}`;
           compactItem.remove(); // Remove from the planner
         });
 
         compactItem.appendChild(removeBtn);
         compactItem.setAttribute("draggable", "true");
         compactItem.addEventListener("dragstart", drag);
+        calWidget.innerHTML = `Calories: ${newCal}`;
 
         targetUl.appendChild(compactItem);
       }
@@ -168,6 +182,7 @@ function searchMeals(event) {
         }
 
         const calories = document.createElement("p");
+        calories.id = "calorie";
         calories.textContent = `Calories: ${caloriesValue}`;
 
         let proteinValue = "N/A";

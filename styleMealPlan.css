@@ -139,6 +139,15 @@ footer {
   font-size: 1.5rem;
 }
 
+h5 {
+  background-color: #228b22; /* Darker green */
+  color: white;
+  padding: 0.50rem;
+  border-radius: 1rem 1rem 0 0;
+  margin: -2.5rem -2rem 2rem -2rem;
+  font-size: 1rem;
+}
+
 .day ul {
   list-style: none;
   padding: 0;
