@@ -26,10 +26,13 @@ header {
 header h1 {
   flex: 1; /* Allows the heading to center dynamically */
   text-align: center; /* Center-align heading text */
-  font-size: 2.5rem; /* Larger font size for the heading */
+  font-size: 1.8rem; /* Larger font size for the heading */
   font-family: 'Poppins', sans-serif; /* Font-family for the heading */
   margin: 0;
+  color: white;
 }
+
+
 
 /* Navigation Styling */
 nav {
@@ -39,6 +42,15 @@ nav {
 .logo:hover {
   color: yellow; /* Change to yellow on hover */
 }
+
+.logo {
+  font-size: 1.8rem;
+}
+
+.header .logo h1:hover {
+  color: yellow; /* Replace 'blue' with your desired color */
+}
+
 
 .navigation {
   list-style: none;
@@ -156,7 +168,7 @@ footer {
  background-color: #4CAF50;
   color: #f0fdf0;
   text-align: center;
-  padding: 20px;
+  padding: 25px;
   font-size: 0.9rem;
   border-radius: 8px 8px 0 0;
   box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);

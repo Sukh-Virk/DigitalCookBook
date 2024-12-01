@@ -79,14 +79,16 @@ nav {
 }
 
 
-
-/* Footer Section */
 footer {
-  background-color: #4CAF50;
-  color: white;
-  text-align: center;
-  padding: 1rem;
-  margin-top: 2rem;
+  background-color: #43a047; /* Green shade you want */
+  color: white; /* White text for contrast */
+  text-align: center; /* Center the text */
+  padding: 0.5rem 0; /* Slim padding for a slimmer footer */
+  margin-top: 2em; /* Space above the footer */
+  width: 100%; /* Full width of the page */
+  border: none; /* Ensure no border appears */
+  box-shadow: none; /* Remove any shadows */
+  font-size: 1rem; /* Readable font size */
 }
 
 /* Meal Planning Section */

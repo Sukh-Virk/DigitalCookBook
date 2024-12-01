@@ -156,14 +156,15 @@ button:hover {
     background: #43a047;
 }
 
-/* Footer Styles */
 .footer {
     background: linear-gradient(90deg, #43a047, #66bb6a);
     color: white;
     text-align: center;
-    padding: 1em 0;
+    padding: 0.2rem 0; /* Reduced padding to make it less tall */
     margin-top: 2em;
 }
+
+
 
 /* Bubble Effects */
 body::before, body::after {
