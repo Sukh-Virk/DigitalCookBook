@@ -1,50 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Meta tags for character encoding and responsive design -->
+  <meta charset="UTF-8"> <!-- Sets character encoding to UTF-8 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensures proper scaling on mobile devices -->
+  
+  <!-- Page title -->
   <title>Modern Meal Planner</title>
-  <link rel="stylesheet" href="styleMealPlan.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link rel="apple-touch-icon" sizes="180x180" href="./images/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16x16.png">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="styleMealPlan.css"> <!-- Link to custom CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome icons -->
+  
+  <!-- Favicon and Icons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="./images/apple-touch-icon.png"> <!-- Apple touch icon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png"> <!-- 32x32 favicon -->
+  <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16x16.png"> <!-- 16x16 favicon -->
 </head>
 <body>
+  <!-- Header Section -->
   <header class="header">
     <a href="index.html" class="logo">
-        <h7>Digital Cookbook</h7>
+      <!-- Website Logo -->
+      <h7>Digital Cookbook</h7>
     </a>
     <nav>
-        <ul class="navigation">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="index.html#features">Features</a></li>
-          <li><a href="index.html#contact">Contact</a></li>
-        </ul>
+      <!-- Navigation Menu -->
+      <ul class="navigation">
+        <li><a href="index.html">Home</a></li> <!-- Link to the Home page -->
+        <li><a href="index.html#features">Features</a></li> <!-- Link to Features section -->
+        <li><a href="index.html#contact">Contact</a></li> <!-- Link to Contact section -->
+      </ul>
     </nav>
-</header>
-  <!-- Meal Search Section -->
+  </header>
+
+  <!-- Main Content -->
   <main>
+    <!-- Meal Search Section -->
     <section id="meal-selector">
-      <h2>Search for Meals</h2>
+      <h2>Search for Meals</h2> <!-- Section Heading -->
       <form id="meal-form">
+        <!-- Input field for meal search -->
         <input type="text" id="meal-search" placeholder="Enter meal name (e.g., pizza)" required>
-        <button type="submit">Search</button>
+        <button type="submit">Search</button> <!-- Submit button -->
       </form>
       <div id="meal-results">
+        <!-- Results displayed after search -->
         <h3>Search Results</h3>
-        <ul id="search-results"></ul>
+        <ul id="search-results"></ul> <!-- List of search results -->
       </div>
     </section>
 
     <!-- Meal Planner Section -->
     <section id="meal-planner">
-      <h2>Your Weekly Planner</h2>
+      <h2>Your Weekly Planner</h2> <!-- Section Heading -->
       <div id="planner">
+        <!-- Planner divided by days of the week -->
         <div class="day" id="Monday" ondrop="handleDrop(event)" ondragover="allowDrop(event)">
-          <h3>Monday</h3>
-          <h5 id="calorie">Calories: 0</h5>
-          <ul></ul>
+          <h3>Monday</h3> <!-- Day Heading -->
+          <h5 id="calorie">Calories: 0</h5> <!-- Calorie counter -->
+          <ul></ul> <!-- List for meals -->
         </div>
         <div class="day" id="Tuesday" ondrop="handleDrop(event)" ondragover="allowDrop(event)">
           <h3>Tuesday</h3>
@@ -77,22 +92,22 @@
           <ul></ul>
         </div>
       </div>
-      <button id="save-plan">Save Plan</button>
+      <button id="save-plan">Save Plan</button> <!-- Button to save the meal plan -->
     </section>
-      
 
+    <!-- Loading Spinner -->
     <div class="loading-spinner hidden" id="loading-spinner">
-      <i class="fas fa-spinner fa-spin"></i>
+      <i class="fas fa-spinner fa-spin"></i> <!-- Animated spinner -->
       <p>Loading...</p>
     </div>
-    
+  </main>
 
-    
-
+  <!-- Footer Section -->
   <footer>
-    <h5>&copy; 2024 Digital Cookbook. All rights reserved.</h5>
+    <h5>&copy; 2024 Digital Cookbook. All rights reserved.</h5> <!-- Footer Text -->
   </footer>
 
-  <script src="mealPlan.js"></script>
+  <!-- JavaScript -->
+  <script src="mealPlan.js"></script> <!-- Link to JavaScript file -->
 </body>
 </html>
