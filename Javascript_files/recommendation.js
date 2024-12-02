@@ -71,7 +71,7 @@ function initializeEventListeners() {
  * Displays the list of recipes fetched from the API.
  * @param {Array} recipes - List of recipe objects returned by the API.
  */
-export async function displayRecipes(recipes) {
+async function displayRecipes(recipes) {
     const resultsDiv = document.getElementById("recipeResults"); // Get the results container
     resultsDiv.innerHTML = ""; // Clear previous results
 
@@ -135,7 +135,7 @@ export async function displayRecipes(recipes) {
  * Fetches detailed information about a recipe and calculates its difficulty level.
  * @returns {number} - Calculated difficulty level of the recipe.
  */
-export async function findInfo() {
+async function findInfo() {
     let difficulty = 0.0;
     let cookingTime = 0.0;
     let ingredientNum = 0.0;
@@ -181,11 +181,11 @@ export async function findInfo() {
     return difficulty;
 }
 
-// // Export the functions
-// module.exports = {
-//     displayRecipes,
-//     findInfo
-// };
+// Export the functions
+module.exports = {
+    displayRecipes,
+    findInfo
+};
 // Automatically initialize event listeners in a browser environment
 if (typeof document !== 'undefined') {
     initializeEventListeners();
