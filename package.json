@@ -3,6 +3,7 @@
     "version": "1.0.0",
     "description": "This is the term project of group cloud 14 for the course CMPT-276",
     "main": "index.js",
+    "type": "module",
     "scripts": {
         "test": "jest",
         "test:watch": "jest --watch"
