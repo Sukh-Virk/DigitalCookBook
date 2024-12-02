@@ -12,51 +12,56 @@ function drag(event) {
 
 // Handle dropping an item into the planner
 function handleDrop(event) {
-  event.preventDefault();
-  const data = event.dataTransfer.getData("text");
-  const draggedItem = document.getElementById(data);
-
-  
+  event.preventDefault(); // Prevent the default browser behavior for drop events
+  const data = event.dataTransfer.getData("text"); // Retrieve the ID of the dragged element
+  const draggedItem = document.getElementById(data); // Get the dragged item by its ID
 
   if (draggedItem) {
+    // Find the closest parent element with the class "day" (the drop target)
     const targetDay = event.target.closest(".day");
     if (targetDay) {
-      const targetUl = targetDay.querySelector("ul");
-      const calWidget = targetDay.querySelector("h5");
+      const targetUl = targetDay.querySelector("ul"); // Get the <ul> inside the drop target
+      const calWidget = targetDay.querySelector("h5"); // Get the calorie widget for the target day
 
-      // Check if item already exists in planner to avoid duplicates
+      // Check if the item already exists in the planner to avoid duplicates
       if (!Array.from(targetUl.children).some((item) => item.id === draggedItem.id)) {
+        // Extract calorie information from the dragged item and the target day's calorie widget
+        const tempNewCal = draggedItem.querySelector("#calorie").textContent.split(' ');
+        const tempOldCal = calWidget.innerHTML.split(' ');
 
-        tempNewCal = draggedItem.querySelector("#calorie").textContent.split(' ');
-        tempOldCal = calWidget.innerHTML.split(' ');
-
-        let newCal = parseInt(tempOldCal[1])+parseInt(tempNewCal[1]);
+        // Calculate the new total calories for the day
+        let newCal = parseInt(tempOldCal[1]) + parseInt(tempNewCal[1]);
         console.log(newCal);
-        // Create a compact item showing only the name and a remove button
-        const compactItem = document.createElement("li");
-        compactItem.id = draggedItem.id;
 
+        // Create a compact item to represent the meal in the planner
+        const compactItem = document.createElement("li");
+        compactItem.id = draggedItem.id; // Assign the same ID as the dragged item
+
+        // Add the name of the meal
         const name = document.createElement("span");
-        name.textContent = draggedItem.querySelector("h4").textContent; // Display only name
+        name.textContent = draggedItem.querySelector("h4").textContent; // Get the name from the dragged item
         compactItem.appendChild(name);
 
+        // Create a "Remove" button to delete the meal from the planner
         const removeBtn = document.createElement("button");
-        removeBtn.textContent = "Remove";
-        removeBtn.classList.add("remove-btn");
+        removeBtn.textContent = "Remove"; // Button text
+        removeBtn.classList.add("remove-btn"); // Add a CSS class for styling
         removeBtn.addEventListener("click", () => {
-          tempNewCal = draggedItem.querySelector("#calorie").textContent.split(' ');
-          tempOldCal = calWidget.innerHTML.split(' ');
-          let newCal = parseInt(tempOldCal[1])-parseInt(tempNewCal[1]);
-          calWidget.innerHTML = `Calories: ${newCal}`;
-          compactItem.remove(); // Remove from the planner
+          // Update the calorie count when removing the meal
+          const tempNewCal = draggedItem.querySelector("#calorie").textContent.split(' ');
+          const tempOldCal = calWidget.innerHTML.split(' ');
+          let newCal = parseInt(tempOldCal[1]) - parseInt(tempNewCal[1]);
+          calWidget.innerHTML = `Calories: ${newCal}`; // Update the displayed calories
+          compactItem.remove(); // Remove the meal from the planner
         });
 
-        compactItem.appendChild(removeBtn);
-        compactItem.setAttribute("draggable", "true");
-        compactItem.addEventListener("dragstart", drag);
-        calWidget.innerHTML = `Calories: ${newCal}`;
+        compactItem.appendChild(removeBtn); // Add the "Remove" button to the meal item
+        compactItem.setAttribute("draggable", "true"); // Make the meal item draggable
+        compactItem.addEventListener("dragstart", drag); // Add drag event listener for re-dragging
 
-        targetUl.appendChild(compactItem);
+        calWidget.innerHTML = `Calories: ${newCal}`; // Update the displayed calorie count
+
+        targetUl.appendChild(compactItem); // Add the meal item to the target day's list
       }
     }
   }
@@ -64,18 +69,21 @@ function handleDrop(event) {
 
 // Save the current meal plan to localStorage
 function saveMealPlan() {
-  const plan = {};
+  const plan = {}; // Initialize an empty object to store the meal plan
+
+  // Loop through each day in the planner
   document.querySelectorAll(".day").forEach((day) => {
-    const dayName = day.id;
+    const dayName = day.id; // Get the day's name (e.g., "Monday")
     const meals = Array.from(day.querySelectorAll("li")).map((li) => ({
-      id: li.id,
-      name: li.querySelector("span").textContent,
+      id: li.id, // Store the ID of each meal
+      name: li.querySelector("span").textContent, // Store the name of each meal
     }));
-    plan[dayName] = meals;
+    plan[dayName] = meals; // Add the day's meals to the plan object
   });
 
+  // Save the meal plan as a JSON string in localStorage
   localStorage.setItem("mealPlan", JSON.stringify(plan));
-  alert("Meal plan saved!");
+  alert("Meal plan saved!"); // Notify the user that the plan has been saved
 }
 
 // Load the saved meal plan from localStorage

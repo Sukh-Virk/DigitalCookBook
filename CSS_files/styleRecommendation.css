@@ -1,0 +1,323 @@
+/* Importing Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+/* General Body and Layout Styles */
+body {
+  font-family: 'Poppins', sans-serif; /* Sets the primary font for the page */
+  background: white; /* Background color for the page */
+  color: #333; /* Default text color */
+  margin: 0; /* Removes default margin */
+  padding: 0; /* Removes default padding */
+  scroll-behavior: smooth; /* Enables smooth scrolling for links */
+}
+
+/* Header Section */
+header {
+  display: flex; /* Flexbox for layout */
+  justify-content: space-between; /* Spaces out the navigation and heading */
+  align-items: center; /* Vertically centers the items */
+  padding: 10px 20px; /* Adds padding inside the header */
+  background-color: #4CAF50; /* Green background for the header */
+  color: white; /* White text color */
+  position: relative; /* Relative positioning for header elements */
+}
+
+header h1 {
+  flex: 1; /* Allows the heading to center dynamically */
+  text-align: center; /* Centers the text of the heading */
+  font-size: 2.5rem; /* Large font size for the heading */
+  margin: 0; /* Removes default margin */
+}
+
+/* Navigation Styling */
+nav {
+  flex-shrink: 0; /* Prevents navigation from shrinking */
+}
+
+.logo:hover {
+  color: yellow; /* Changes logo text color on hover */
+}
+
+.navigation {
+  list-style: none; /* Removes default list styling */
+  margin: 0; /* Removes margin around the list */
+  padding: 0; /* Removes padding around the list */
+  display: flex; /* Displays navigation links in a row */
+  gap: 20px; /* Adds space between navigation links */
+}
+
+.navigation li {
+  display: inline; /* Ensures links are inline elements */
+}
+
+.navigation a {
+  text-decoration: none; /* Removes underline from links */
+  color: white; /* White text color for links */
+  font-weight: bold; /* Makes links bold */
+  font-size: 1.1rem; /* Slightly larger font size for links */
+  transition: color 0.3s ease; /* Smooth transition effect for hover */
+}
+
+.navigation a:hover {
+  color: #ffeb3b; /* Yellow color for links on hover */
+}
+
+/* Main Section */
+#meal-recommendation {
+  max-width: 800px; /* Limits the width of the section */
+  margin: 40px auto; /* Centers the section with vertical spacing */
+  padding: 30px; /* Adds padding inside the section */
+  background: #ffffff; /* White background for the section */
+  border-radius: 20px; /* Rounds the corners */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Adds a shadow for depth */
+  position: relative; /* Relative positioning for decorative elements */
+  overflow: hidden; /* Hides overflowed content */
+}
+
+#meal-recommendation::before,
+#meal-recommendation::after {
+  content: ''; /* Decorative pseudo-elements */
+  position: absolute; /* Positions relative to the parent */
+  background: rgba(40, 167, 69, 0.1); /* Light green translucent background */
+  border-radius: 50%; /* Circular shape */
+  width: 150px;
+  height: 150px;
+}
+
+#meal-recommendation::before {
+  top: -50px;
+  left: -50px;
+}
+
+#meal-recommendation::after {
+  bottom: -50px;
+  right: -50px;
+}
+
+#meal-recommendation h2 {
+  font-size: 2rem; /* Large font size for the heading */
+  margin-bottom: 15px; /* Spacing below the heading */
+  color: #28a745; /* Green text color */
+}
+
+#meal-recommendation p {
+  font-size: 1.2rem; /* Slightly larger font size for text */
+  color: #555; /* Grey text color */
+  margin-bottom: 25px; /* Spacing below the paragraph */
+}
+
+/* Search Form */
+.input-form {
+  display: flex; /* Flexbox layout */
+  justify-content: center; /* Centers the form */
+  gap: 10px; /* Adds space between form elements */
+  flex-wrap: wrap; /* Allows wrapping of form elements */
+}
+
+.input-form input {
+  width: 100%; /* Full width by default */
+  max-width: 400px; /* Maximum width for the input */
+  padding: 15px; /* Padding inside the input */
+  font-size: 1rem; /* Font size for input text */
+  border: 1px solid #ddd; /* Light grey border */
+  border-radius: 10px; /* Rounds the corners */
+  outline: none; /* Removes the default focus outline */
+  background: #f9f9f9; /* Light grey background */
+  transition: border-color 0.3s, box-shadow 0.3s; /* Smooth transition for focus effects */
+}
+
+.input-form input:focus {
+  border-color: #28a745; /* Green border on focus */
+  box-shadow: 0 4px 10px rgba(40, 167, 69, 0.2); /* Shadow effect on focus */
+}
+
+.input-form .btn {
+  padding: 15px 30px; /* Padding for the button */
+  font-size: 1.1rem; /* Slightly larger font size for the button */
+  font-weight: bold; /* Bold text for the button */
+  color: white; /* White text color */
+  background: linear-gradient(90deg, #28a745, #218838); /* Green gradient background */
+  border: none; /* Removes border */
+  border-radius: 10px; /* Rounds the corners */
+  cursor: pointer; /* Pointer cursor for the button */
+  transition: background 0.3s, transform 0.3s; /* Smooth hover effects */
+}
+
+.input-form .btn:hover {
+  transform: scale(1.05); /* Slight zoom-in effect on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Adds shadow on hover */
+}
+
+/* Footer Section */
+footer {
+  background-color: #4CAF50; /* Green background for the footer */
+  color: #f0fdf0; /* Light green text color */
+  text-align: center; /* Centers the footer text */
+  padding: 20px; /* Adds padding inside the footer */
+  font-size: 0.9rem; /* Slightly smaller font size */
+  border-radius: 8px 8px 0 0; /* Rounds the top corners */
+  box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1); /* Shadow effect at the top */
+  margin-top: 50px; /* Adds spacing above the footer */
+}
+
+footer a {
+  color: #f0fdf0; /* Light green color for links */
+  text-decoration: none; /* Removes underline */
+  font-weight: bold; /* Bold text */
+}
+
+footer a:hover {
+  text-decoration: underline; /* Underline on hover */
+}
+
+/* General Link Styles */
+a { 
+  color: inherit; /* Inherits color from parent */
+  text-decoration: none; /* Removes underline */
+}
+
+/* Recipe Introduction Section */
+.recipeIntro {
+  font-size: 2rem; /* Large font size for the introduction */
+  margin-bottom: 15px; /* Spacing below the text */
+  color: #228B22; /* Dark green color */
+  font-family: 'Poppins', sans-serif; /* Primary font */
+  text-align: center; /* Centers the text */
+  font-weight: bold; /* Bold text */
+}
+
+/* Recipe Container Styles */
+.recipeDiv {
+  background-color: #dbfae5; /* Light green background */
+  border-radius: 10px; /* Rounds the corners */
+  overflow: hidden; /* Hides any overflowing content */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  font-family: 'Arial', sans-serif; /* Fallback font for recipe cards */
+  margin: 20px; /* Space around the recipe card */
+  transition: transform 0.3s ease; /* Smooth transform effect */
+}
+
+.recipeDiv:hover {
+  background-color: #adbbad; /* Changes background color on hover */
+  transform: translateY(-5px); /* Lifts the card slightly on hover */
+}
+
+/* Horizontal Line Styling */
+hr {
+  border-top: 1px solid #228B22; /* Green line */
+}
+
+/* Recipe Name Styling */
+.recipeName {
+  font-size: 24px; /* Large font size */
+  color: #228B22; /* Green text color */
+  padding: 15px; /* Padding inside the recipe name */
+  text-align: center; /* Centers the text */
+  font-weight: bold; /* Bold text */
+}
+
+/* Main Layout for Recipe Cards */
+.recipeMain {
+  display: flex; /* Flexbox layout for content alignment */
+  align-items: center; /* Centers items vertically */
+  margin-bottom: 5%; /* Adds spacing below the recipe */
+}
+
+/* Recipe Image Styling */
+.recipeImage {
+  margin-left: 2%; /* Adds space on the left */
+  height: 180px; /* Fixed height for images */
+  object-fit: cover; /* Ensures the image maintains its aspect ratio */
+}
+
+/* Recipe Information Section */
+.recipeInfo {
+  padding: 15px; /* Adds padding inside the container */
+  display: flex; /* Flexbox layout */
+  align-items: left; /* Aligns items to the left */
+  flex-direction: column; /* Stacks items vertically */
+}
+
+/* Ingredient List and Difficulty Label */
+.recipeIng, .recipeDiff {
+  text-align: left; /* Aligns text to the left */
+  font-size: 18px; /* Font size for labels */
+  color: #228B22; /* Green text color */
+  margin-left: 5%; /* Adds left margin */
+  margin-bottom: 10px; /* Adds space below the label */
+}
+
+/* Recipe Link Styling */
+.recipeLink {
+  max-width: 90%; /* Limits the width of the link */
+  width: 180px; /* Fixed width */
+  display: inline-block; /* Makes the link behave like a block */
+  font-size: 20px; /* Larger font size */
+  background-color: #228B22; /* Green background */
+  color: #fcfcfc; /* Light text color */
+  text-decoration: none; /* Removes underline */
+  font-weight: bold; /* Bold text */
+  padding: 5px 10px; /* Padding inside the link */
+  border: 2px solid #228B22; /* Green border */
+  border-radius: 5px; /* Rounds the corners */
+  transition: background-color 0.2s ease, color 0.2s ease; /* Smooth hover effect */
+  margin-left: 5%; /* Adds space to the left */
+  margin-bottom: 5%; /* Adds spacing below the link */
+}
+
+.recipeLink:hover {
+  background-color: #006919; /* Darker green on hover */
+  border: 2px solid #006919; /* Matches the darker green */
+  color: white; /* White text on hover */
+}
+
+/* Moving Search Icon */
+.moving-search-icon {
+  position: relative; /* Positioned relative for animation */
+  width: 100px; /* Sets width */
+  height: auto; /* Maintains aspect ratio */
+  margin: 20px auto; /* Centers the icon */
+  text-align: center; /* Aligns the icon to the center */
+}
+
+.search-icon {
+  font-size: 50px; /* Large icon size */
+  color: #4CAF50; /* Green color */
+  animation: moveSearch 3s linear infinite; /* Infinite animation effect */
+}
+
+/* Animation Keyframes for Search Icon */
+@keyframes moveSearch {
+  0% {
+    transform: translateX(-100%); /* Starts off-screen to the left */
+  }
+  50% {
+    transform: translateX(50%); /* Moves to the center */
+  }
+  100% {
+    transform: translateX(100%); /* Ends off-screen to the right */
+  }
+}
+
+/* Button and Spinner Container */
+.button-container {
+  display: flex; /* Flexbox layout for alignment */
+  align-items: center; /* Centers items vertically */
+  gap: 10px; /* Space between the button and spinner */
+}
+
+/* Spinner Styling */
+.spinner {
+  display: flex; /* Flexbox layout for centering */
+  align-items: center; /* Centers spinner vertically */
+  justify-content: center; /* Centers spinner horizontally */
+}
+
+.spinner-icon {
+  font-size: 1.5rem; /* Medium-sized spinner */
+  color: #218838; /* Green color for the spinner */
+}
+
+.hidden {
+  display: none; /* Hides the spinner */
+}
