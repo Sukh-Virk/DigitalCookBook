@@ -44,7 +44,7 @@ describe('Chatbox Tests', () => {
             if (message) {
                 chatbox.displayMessage('user', message);
                 input.value = '';
-                // Mock AI response
+                // test AI response
                 setTimeout(() => {
                     chatbox.displayMessage('ai', 'To cook pasta, boil water and follow package instructions.');
                 }, 100);

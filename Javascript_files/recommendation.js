@@ -182,8 +182,11 @@ async function findInfo() {
     return difficulty;
 }
 
-// Export functions for use in other files
-//module.exports = { displayRecipes, findInfo, initializeEventListeners };
+// Export the functions
+module.exports = {
+    displayRecipes,
+    findInfo
+};
 
 // Automatically initialize event listeners in a browser environment
 if (typeof document !== 'undefined') {
