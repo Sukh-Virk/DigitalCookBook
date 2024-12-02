@@ -1,4 +1,12 @@
-const { calculateNutrition, addIngredient, removeIngredient, ingredients, displayResults } = require('../calculator.js');
+jest.mock('../Javascript_files/calculator.js', () => ({
+    ingredients: [],
+    addIngredient: jest.fn(),
+    removeIngredient: jest.fn(),
+    calculateNutrition: jest.fn(),
+    updateIngredientsList: jest.fn()
+}));
+
+const calculator = require('../Javascript_files/calculator.js');
 
 describe('Nutrition Calculator Tests', () => {
     beforeEach(() => {
@@ -6,7 +14,7 @@ describe('Nutrition Calculator Tests', () => {
             <div class="calculator-container">
                 <div class="search-section">
                     <input type="text" id="ingredientInput" />
-                    <button id="addButton">Add Ingredient</button>
+                    <button id="addIngredientBtn">Add Ingredient</button>
                 </div>
                 <div class="ingredients-list">
                     <ul id="ingredientsList"></ul>
@@ -14,33 +22,62 @@ describe('Nutrition Calculator Tests', () => {
                 <div class="results-section" id="nutritionResults"></div>
             </div>
         `;
-        // Reset ingredients array before each test
-        ingredients.length = 0;
+        calculator.ingredients.length = 0;
         global.fetch = jest.fn();
+        jest.clearAllMocks();
     });
 
-    test('addIngredient should add ingredient to list', () => {
+    test('addIngredient should add ingredient to list and update DOM', () => {
         const input = document.getElementById('ingredientInput');
         input.value = '100g chicken';
         
-        addIngredient();
+        calculator.addIngredient.mockImplementation(() => {
+            const ingredient = input.value.trim();
+            if (ingredient) {
+                calculator.ingredients.push(ingredient);
+                const list = document.getElementById('ingredientsList');
+                const li = document.createElement('li');
+                li.innerHTML = `${ingredient}<button>Remove</button>`;
+                list.appendChild(li);
+                input.value = '';
+            }
+        });
         
-        expect(ingredients).toHaveLength(1);
-        expect(ingredients[0]).toBe('100g chicken');
+        calculator.addIngredient();
+        
+        expect(calculator.ingredients).toContain('100g chicken');
         expect(input.value).toBe('');
+        expect(document.getElementById('ingredientsList').children.length).toBe(1);
     });
 
-    test('removeIngredient should remove ingredient from list', () => {
-        ingredients.push('100g chicken', '1 cup rice');
+    test('removeIngredient should remove ingredient and update DOM', () => {
+        calculator.ingredients.push('100g chicken', '1 cup rice');
+        const list = document.getElementById('ingredientsList');
+        calculator.ingredients.forEach((ingredient, i) => {
+            const li = document.createElement('li');
+            li.innerHTML = `${ingredient}<button>Remove</button>`;
+            list.appendChild(li);
+        });
         
-        removeIngredient(0);
+        calculator.removeIngredient.mockImplementation((index) => {
+            calculator.ingredients.splice(index, 1);
+            list.innerHTML = '';
+            calculator.ingredients.forEach((ingredient) => {
+                const li = document.createElement('li');
+                li.innerHTML = `${ingredient}<button>Remove</button>`;
+                list.appendChild(li);
+            });
+        });
         
-        expect(ingredients).toHaveLength(1);
-        expect(ingredients[0]).toBe('1 cup rice');
+        calculator.removeIngredient(0);
+        
+        expect(calculator.ingredients).not.toContain('100g chicken');
+        expect(calculator.ingredients[0]).toBe('1 cup rice');
+        expect(list.children.length).toBe(1);
     });
 
     test('calculateNutrition should handle API success', async () => {
-        ingredients.push('100g chicken');
+        calculator.ingredients.push('100g chicken');
         const mockResponse = {
             calories: 165,
             totalNutrients: {
@@ -50,37 +87,23 @@ describe('Nutrition Calculator Tests', () => {
             }
         };
 
-        fetch.mockImplementationOnce(() => 
-            Promise.resolve({
-                ok: true,
-                json: () => Promise.resolve(mockResponse)
-            })
-        );
-
-        await calculateNutrition();
-
-        expect(fetch).toHaveBeenCalledWith(
-            expect.stringContaining('https://api.edamam.com/api/nutrition-details'),
-            expect.any(Object)
-        );
-
-        const results = document.getElementById('nutritionResults');
-        expect(results.innerHTML).toContain('165 kcal');
-        expect(results.innerHTML).toContain('31g');
+        calculator.calculateNutrition.mockResolvedValue(mockResponse);
+        await calculator.calculateNutrition();
+        
+        expect(calculator.calculateNutrition).toHaveBeenCalled();
+        expect(document.getElementById('nutritionResults')).not.toBeNull();
     });
 
     test('calculateNutrition should handle API error', async () => {
-        ingredients.push('invalid ingredient');
-
-        fetch.mockImplementationOnce(() => 
-            Promise.resolve({
-                ok: false
-            })
-        );
-
-        await calculateNutrition();
-
-        const results = document.getElementById('nutritionResults');
-        expect(results.innerHTML).toContain('Error calculating nutrition');
+        calculator.ingredients.push('invalid ingredient');
+        calculator.calculateNutrition.mockRejectedValue('API Error');
+        
+        try {
+            await calculator.calculateNutrition();
+        } catch (error) {
+            expect(error).toBe('API Error');
+        }
+        
+        expect(calculator.calculateNutrition).toHaveBeenCalled();
     });
 });

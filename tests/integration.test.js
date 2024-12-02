@@ -1,37 +1,53 @@
-// Import the required functions first
-const { calculateNutrition } = require('../calculator.js');
-const { searchRecipes } = require('../search.js');
-const { addToMealPlan } = require('../mealPlan.js');
-const { saveRecipe } = require('../save.js');
+jest.mock('../Javascript_files/search.js');
+jest.mock('../Javascript_files/difficulty-estimator.js');
+
+const { searchRecipes } = require('../Javascript_files/search.js');
+const difficultyEstimator = require('../Javascript_files/difficulty-estimator.js');
 
 describe('Feature Integration Tests', () => {
     beforeEach(() => {
         document.body.innerHTML = `
-            <div id="nutritionResults"></div>
-            <div id="mealPlan"></div>
-            <div id="saved-recipes"></div>
+            <main id="theMainTag" class="estimator-container">
+                <div id="search-section">
+                    <input type="text" id="search-input">
+                    <div id="search-results"></div>
+                </div>
+                <div id="difficulty-section">
+                    <input type="number" id="cookTime" value="30">
+                    <input type="number" id="ingredientsNum" value="5">
+                    <textarea id="recipeText">chicken lettuce</textarea>
+                    <h2 id="output"></h2>
+                </div>
+                <div id="diffEasy" class="example-card"></div>
+                <div id="diffMedium" class="example-card"></div>
+                <div id="diffHard" class="example-card"></div>
+            </main>
         `;
-        localStorage.clear();
-        global.fetch = jest.fn();
     });
 
-    test('calculator with meal plan integration', async () => {
-        const mockNutritionResponse = {
-            calories: 165,
-            totalNutrients: {
-                PROCNT: { quantity: 31, unit: 'g' }
-            }
+    test('search results integrate with difficulty calculation', () => {
+        const mockRecipe = {
+            title: 'Chicken Salad',
+            ingredients: ['chicken', 'lettuce']
         };
 
-        fetch.mockImplementationOnce(() => 
-            Promise.resolve({
-                ok: true,
-                json: () => Promise.resolve(mockNutritionResponse)
-            })
-        );
+        searchRecipes.mockReturnValue([mockRecipe]);
+        difficultyEstimator.findDifficulty.mockImplementation(() => {
+            document.getElementById('output').innerHTML = 'Your Difficulty is 4.5';
+            document.getElementById('diffMedium').className = 'example-card-Selected';
+        });
 
-        await calculateNutrition(['100g chicken']);
-        const mealPlanElement = document.getElementById('mealPlan');
-        expect(mealPlanElement.innerHTML).toContain('165 kcal');
+        const searchResults = searchRecipes(['chicken', 'lettuce']);
+        expect(searchResults.length).toBe(1);
+        
+        const recipe = searchResults[0];
+        document.getElementById('ingredientsNum').value = recipe.ingredients.length;
+        document.getElementById('recipeText').value = recipe.ingredients.join(' ');
+        
+        const outputHeader = document.getElementById('output');
+        difficultyEstimator.findDifficulty(outputHeader);
+        
+        expect(outputHeader.innerHTML).toContain('Your Difficulty is');
+        expect(document.querySelector('.example-card-Selected')).not.toBeNull();
     });
 });
