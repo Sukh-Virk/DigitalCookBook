@@ -51,6 +51,11 @@ nav {
   color: yellow; /* Replace 'blue' with your desired color */
 }
 
+.header .logo h1
+{
+  font-size: 1.8rem;
+}
+
 
 .navigation {
   list-style: none;
