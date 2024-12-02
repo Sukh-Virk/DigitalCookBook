@@ -183,7 +183,7 @@ async function findInfo() {
 }
 
 // Export functions for use in other files
-module.exports = { displayRecipes, findInfo, initializeEventListeners };
+//module.exports = { displayRecipes, findInfo, initializeEventListeners };
 
 // Automatically initialize event listeners in a browser environment
 if (typeof document !== 'undefined') {
