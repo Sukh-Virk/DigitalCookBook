@@ -181,11 +181,18 @@ async function findInfo() {
     return difficulty;
 }
 
-// Export the functions
-module.exports = {
-    displayRecipes,
-    findInfo
-};
+if (typeof module !== 'undefined' && module.exports) {
+    // Export for Node.js/Jest environment
+    module.exports = {
+        displayRecipes,
+        findInfo
+    };
+} else {
+    // Export for browser environment
+    window.displayRecipes = displayRecipes;
+    window.findInfo = findInfo;
+}
+
 // Automatically initialize event listeners in a browser environment
 if (typeof document !== 'undefined') {
     initializeEventListeners();
