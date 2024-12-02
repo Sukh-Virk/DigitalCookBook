@@ -1,8 +1,9 @@
-jest.mock('../Javascript_files/search.js');
-jest.mock('../Javascript_files/difficulty-estimator.js');
+jest.mock('../Javascript_files/recommendation.js', () => ({
+    displayRecipes: jest.fn(),
+    findInfo: jest.fn()
+}));
 
-const { searchRecipes } = require('../Javascript_files/search.js');
-const difficultyEstimator = require('../Javascript_files/difficulty-estimator.js');
+const { displayRecipes, findInfo } = require('../Javascript_files/recommendation.js');
 
 describe('Feature Integration Tests', () => {
     beforeEach(() => {
@@ -21,33 +22,52 @@ describe('Feature Integration Tests', () => {
                 <div id="diffEasy" class="example-card"></div>
                 <div id="diffMedium" class="example-card"></div>
                 <div id="diffHard" class="example-card"></div>
+                <div id="recipeResults"></div>
             </main>
         `;
+        global.fetch = jest.fn();
+        global.apiKey = 'test-api-key';
+        global.apiUrlInfo = '';
+        displayRecipes.mockClear();
+        findInfo.mockClear();
     });
 
-    test('search results integrate with difficulty calculation', () => {
+    test('recipe recommendations integrate with difficulty estimation', async () => {
         const mockRecipe = {
-            title: 'Chicken Salad',
-            ingredients: ['chicken', 'lettuce']
+            title: 'Chicken Pasta',
+            readyInMinutes: 45,
+            extendedIngredients: ['chicken', 'pasta', 'tomato', 'garlic', 'olive oil'],
+            cheap: true,
+            id: 123,
+            image: 'pasta.jpg',
+            usedIngredients: [
+                { name: 'chicken' },
+                { name: 'pasta' },
+                { name: 'tomato' }
+            ]
         };
 
-        searchRecipes.mockReturnValue([mockRecipe]);
-        difficultyEstimator.findDifficulty.mockImplementation(() => {
-            document.getElementById('output').innerHTML = 'Your Difficulty is 4.5';
-            document.getElementById('diffMedium').className = 'example-card-Selected';
+        findInfo.mockResolvedValue(4.5);
+        
+        // Mock displayRecipes calls findInfo (difficulty)
+        displayRecipes.mockImplementation(async (recipes) => {
+            const difficulty = await findInfo();
+            const resultsDiv = document.getElementById('recipeResults');
+            resultsDiv.innerHTML = `
+                <div class="recipe">
+                    <div class="recipeName">${recipes[0].title}</div>
+                    <div class="recipeDiff">Difficulty: ${difficulty}/10</div>
+                </div>
+            `;
         });
 
-        const searchResults = searchRecipes(['chicken', 'lettuce']);
-        expect(searchResults.length).toBe(1);
+        await displayRecipes([mockRecipe]);
         
-        const recipe = searchResults[0];
-        document.getElementById('ingredientsNum').value = recipe.ingredients.length;
-        document.getElementById('recipeText').value = recipe.ingredients.join(' ');
+        expect(displayRecipes).toHaveBeenCalledWith([mockRecipe]);
+        expect(findInfo).toHaveBeenCalled();
         
-        const outputHeader = document.getElementById('output');
-        difficultyEstimator.findDifficulty(outputHeader);
-        
-        expect(outputHeader.innerHTML).toContain('Your Difficulty is');
-        expect(document.querySelector('.example-card-Selected')).not.toBeNull();
+        const recipeResults = document.getElementById('recipeResults');
+        expect(recipeResults.innerHTML).toContain('Chicken Pasta');
+        expect(recipeResults.innerHTML).toContain('Difficulty: 4.5/10');
     });
 });

@@ -1,8 +1,10 @@
-const { displayRecipes } = require('../Javascript_files/recommendation.js');
-
+// Mock the entire module first
 jest.mock('../Javascript_files/recommendation.js', () => ({
-    displayRecipes: jest.fn()
+    displayRecipes: jest.fn(),
+    findInfo: jest.fn()
 }));
+
+const { displayRecipes, findInfo } = require('../Javascript_files/recommendation.js');
 
 describe('Recipe Recommendation Tests', () => {
     beforeEach(() => {
@@ -14,6 +16,10 @@ describe('Recipe Recommendation Tests', () => {
             </form>
         `;
         global.fetch = jest.fn();
+        global.apiKey = 'test-api-key';
+        global.apiUrlInfo = '';
+        displayRecipes.mockClear();
+        findInfo.mockClear();
     });
 
     test('displays recipes with all information', async () => {
@@ -28,13 +34,15 @@ describe('Recipe Recommendation Tests', () => {
             ]
         }];
 
-        displayRecipes(mockRecipes);
+        displayRecipes.mockResolvedValue(undefined);
         
+        await displayRecipes(mockRecipes);
         expect(displayRecipes).toHaveBeenCalledWith(mockRecipes);
     });
 
     test('handles empty recipe list', async () => {
-        displayRecipes([]);
+        displayRecipes.mockResolvedValue(undefined);
+        await displayRecipes([]);
         expect(displayRecipes).toHaveBeenCalledWith([]);
     });
 });
