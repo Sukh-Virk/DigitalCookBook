@@ -2,21 +2,17 @@
 <html lang="en">
 
 <head>
-    <!-- Character encoding and viewport settings -->
-    <meta charset="UTF-8"> <!-- Defines the character encoding for the document -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensures the page is responsive on all devices -->
-
-    <!-- Title of the page -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat Box - Digital Cookbook</title>
-
-    <!-- Link to the external CSS file for styling -->
     <link rel="stylesheet" href="../CSS_files/styleChatBox.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16x16.png">
 </head>
 
 <body>
-    <!-- Bubble container for background decorative elements -->
     <div class="bubble-container">
-        <!-- Individual bubbles for visual effect -->
         <div class="bubble"></div>
         <div class="bubble"></div>
         <div class="bubble"></div>
@@ -24,58 +20,41 @@
         <div class="bubble"></div>
     </div>
 
-    <!-- Header section -->
     <header class="header">
-        <!-- Logo for the application -->
-        <div class="logo">Digital Cookbook</div>
-
-        <!-- Navigation bar -->
+        <a href="../index.html" class="logo">
+            <h1>Digital Cookbook</h1>
+        </a>
         <nav>
             <ul class="navigation">
-                <!-- Navigation links -->
-                <li><a href="index.html">Home</a></li>
-                <li><a href="index.html#features">Features</a></li>
-                <li><a href="index.html#contact">Contact</a></li>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="index.html#features">Features</a></li>
+              <li><a href="index.html#contact">Contact</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- Main content section -->
     <main id="theMainTag" class="chatBox-container">    
-        <!-- Page heading -->
         <h1>Chat box</h1>
 
-        <!-- Form for user input -->
-        <form id="input-form" class="input-form">
-            <!-- Label for the input box -->
-            <label class="chatBoxLabel">Type your request:</label>
+        <form id="input-form" class = "input-form">
+            <label class ="chatBoxLabel">Type your request:</label>
+            <textarea id="inputBox" name="inputBox" class="inputBox"> </textarea>
 
-            <!-- Textarea for user input -->
-            <textarea id="inputBox" name="inputBox" class="inputBox"></textarea>
-
-            <!-- Container for the submit button and loading spinner -->
             <div class="button-container">
-                <!-- Submit button for the form -->
                 <button type="submit" class="btn">Answer</button>
-
-                <!-- Loading spinner, initially hidden -->
                 <div id="loading-spinner" class="spinner hidden">
-                    <i class="fas fa-spinner fa-spin spinner-icon"></i>
-                </div>
+                <i class="fas fa-spinner fa-spin spinner-icon"></i>
             </div>
         </form>
-
-        <!-- Div for displaying the result of the chat box interaction -->
-        <div id="result" class="resultDiv"></div>
+        <div id="result" class="resultDiv">
+        </div>
     </main>
 
-    <!-- Footer section -->
+
     <footer class="footer">
-        <!-- Copyright notice -->
         <p>&copy; 2024 Digital Cookbook. All Rights Reserved.</p>
     </footer>
 
-    <!-- Link to the external JavaScript file -->
     <script src="../Javascript_files/chatBox.js"></script>
 </body>
 
