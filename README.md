@@ -22,8 +22,10 @@ This is the term project of group cloud 14 for the course CMPT-276
 
 ## M2
 
+Video: </br>
 [Video presentation](https://drive.google.com/file/d/1lMbZWj4EuPBpiQFkkOgGeo_D1UmjFqsI/view?usp=sharing)
 </br>
-[Report]()
+Report:</br>
+[Report](M2-Report.pdf)
 
 
